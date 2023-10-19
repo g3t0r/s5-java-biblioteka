@@ -16,15 +16,20 @@ public class ResponseWriter {
                 String.valueOf(response.getStatus().getCode()),
                 response.getStatus().getMessage()));
 
+        int bodyLength = response.getRawBody().length;
+
+        response.getHeaders().putIfAbsent(HttpHeaders.CONTENT_LENGTH.getName(), String.valueOf(bodyLength));
+
         for(Map.Entry<String, String> header: response.getHeaders().entrySet()) {
             writer.println(String.format("%s: %s", header.getKey(), header.getValue()));
         }
 
         writer.println();
 
-        if(response.getBody() instanceof String stringResponse) {
-            writer.write(stringResponse);
+        if(bodyLength != 0) {
+            writer.write(response.getRawBody());
         }
+
         writer.flush();
         writer.close();
     }

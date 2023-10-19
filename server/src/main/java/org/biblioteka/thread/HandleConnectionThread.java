@@ -1,12 +1,10 @@
 package org.biblioteka.thread;
 
-import org.biblioteka.http.Request;
-import org.biblioteka.http.RequestReader;
-import org.biblioteka.http.Response;
-import org.biblioteka.http.ResponseWriter;
+import org.biblioteka.http.*;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Map;
 
 public class HandleConnectionThread implements Runnable {
 
@@ -26,7 +24,8 @@ public class HandleConnectionThread implements Runnable {
             Request<String> request = new RequestReader(reader).readRequest(String::new);
             System.out.println(request);
 
-            Response<String> response = Response.ok(request.getProtocol(), "Test test");
+            JsonResponse<?> response = JsonResponse.noContent(request.getProtocol());
+
             PrintWriter printWriter = new PrintWriter(new BufferedOutputStream(clientSocket.getOutputStream()));
             new ResponseWriter(printWriter).writeResponse(response);
 
