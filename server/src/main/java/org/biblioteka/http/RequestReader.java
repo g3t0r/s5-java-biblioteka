@@ -15,7 +15,7 @@ public class RequestReader {
         this.reader = reader;
     }
 
-    public Request<char[]> readRequest() throws IOException {
+    public RawRequest readRequest() throws IOException {
 
         String method;
         String uri;
@@ -49,13 +49,9 @@ public class RequestReader {
                         readBytes, contentLength));
             }
 
-            return new Request<>(HttpMethod.fromString(method), URI.create(uri), protocol, headers, data);
+            return new RawRequest(HttpMethod.fromString(method), URI.create(uri), protocol, headers, data);
         }
 
-        return new Request<>(HttpMethod.fromString(method), URI.create(uri), protocol, headers, null);
-    }
-
-    public <T> Request<T> readRequest(Function<char[], T> mapping) throws IOException {
-        return readRequest().cast(mapping);
+        return new RawRequest(HttpMethod.fromString(method), URI.create(uri), protocol, headers, null);
     }
 }

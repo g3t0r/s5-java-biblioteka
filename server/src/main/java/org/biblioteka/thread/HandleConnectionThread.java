@@ -1,5 +1,6 @@
 package org.biblioteka.thread;
 
+import org.biblioteka.dto.TestDto;
 import org.biblioteka.http.*;
 
 import java.io.*;
@@ -21,7 +22,8 @@ public class HandleConnectionThread implements Runnable {
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(new BufferedInputStream(clientSocket.getInputStream())));
 
-            Request<String> request = new RequestReader(reader).readRequest(String::new);
+            JsonRequest<TestDto> request = JsonRequest.fromRawRequest(new RequestReader(reader).readRequest(), TestDto.class);
+            System.out.println(request);
             System.out.println(request);
 
             JsonResponse<?> response = JsonResponse.noContent(request.getProtocol());
