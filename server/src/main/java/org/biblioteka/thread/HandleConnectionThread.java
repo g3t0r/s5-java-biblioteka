@@ -5,7 +5,6 @@ import org.biblioteka.http.*;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Map;
 
 public class HandleConnectionThread implements Runnable {
 

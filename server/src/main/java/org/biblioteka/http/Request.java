@@ -20,15 +20,6 @@ public class Request<T> {
     private Map<String, String> headers;
     private T body;
 
-    public <R> Request<R> cast(Function<T, R> map) {
-        return new Request<>(
-                method,
-                uri,
-                protocol,
-                headers,
-                (body == null) ? null : map.apply(body));
-    }
-
     @Override
     public String toString() {
         return "Request{" +
