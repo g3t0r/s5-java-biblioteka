@@ -26,4 +26,8 @@ public class JsonResponse<T> extends Response<T> {
         return new JsonResponse<>(protocol, HttpStatus.OK, new HashMap<>(), body);
     }
 
+    public static <T> JsonResponse<T> buildByStatusAndBody(String protocol, HttpStatus status, T body) {
+        return new JsonResponse<>(protocol, status, new HashMap<>(), body);
+    }
+
 }
