@@ -1,13 +1,13 @@
 package org.biblioteka.thread;
 
 import org.biblioteka.auth.UserAuthInfo;
-import org.biblioteka.http.Request;
+import org.biblioteka.http.RawRequest;
 
-public class RequestContext<R extends Request<?>> {
-    private final R request;
+public class RequestContext {
+    private final RawRequest request;
     private final UserAuthInfo userAuthInfo;
 
-    public RequestContext(R request, UserAuthInfo userAuthInfo) {
+    public RequestContext(RawRequest request, UserAuthInfo userAuthInfo) {
         this.request = request;
         this.userAuthInfo = userAuthInfo;
     }
@@ -18,5 +18,13 @@ public class RequestContext<R extends Request<?>> {
                 "request=" + request +
                 ", userAuthInfo=" + userAuthInfo +
                 '}';
+    }
+
+    public RawRequest getRequest() {
+        return request;
+    }
+
+    public UserAuthInfo getUserAuthInfo() {
+        return userAuthInfo;
     }
 }

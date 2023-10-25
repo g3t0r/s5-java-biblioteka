@@ -4,11 +4,13 @@ import org.biblioteka.auth.AuthenticationExtractor;
 import org.biblioteka.auth.UserAuthInfo;
 import org.biblioteka.dto.ErrorDTO;
 import org.biblioteka.exceptions.Http4xxException;
+import org.biblioteka.exceptions.NotFoundException;
 import org.biblioteka.http.*;
+import org.biblioteka.usecase.UseCase;
+import org.biblioteka.usecase.UseCaseController;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.HashMap;
 
 public class HandleConnectionThread implements Runnable {
 
@@ -30,11 +32,17 @@ public class HandleConnectionThread implements Runnable {
             try {
 
                 UserAuthInfo authInfo = AuthenticationExtractor.extractAuthInfo(rawRequest);
-                RequestContext<?> context = new RequestContext<>(rawRequest, authInfo);
-                ContextHolder.getInstance().putContext(context);
-                System.out.println(context);
+                RequestContext context = new RequestContext(rawRequest, authInfo);
 
-                JsonResponse<?> response = JsonResponse.noContent(rawRequest.getProtocol());
+                UseCase<?, ?> useCase = UseCaseController
+                        .getInstance()
+                        .getUseCase(rawRequest.getUri().getPath(), rawRequest.getMethod());
+
+                if(useCase == null) {
+                    throw NotFoundException.build(rawRequest.getUri().getPath(), rawRequest.getMethod());
+                }
+
+                Response<?> response = useCase.execute(context);
                 PrintWriter printWriter = new PrintWriter(new BufferedOutputStream(clientSocket.getOutputStream()));
                 new ResponseWriter(printWriter).writeResponse(response);
 

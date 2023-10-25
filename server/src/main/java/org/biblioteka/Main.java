@@ -1,6 +1,7 @@
 package org.biblioteka;
 
 import org.biblioteka.config.DatabaseConfig;
+import org.biblioteka.config.UseCaseConfig;
 import org.biblioteka.http.Response;
 import org.biblioteka.thread.HandleConnectionThread;
 
@@ -17,6 +18,7 @@ public class Main {
         System.out.println("Hello from the server");
 
         DatabaseConfig.init();
+        UseCaseConfig.init();
         Executor executorService = Executors.newFixedThreadPool(10);
         ServerSocket server = new ServerSocket(2020);
         while(true) {
