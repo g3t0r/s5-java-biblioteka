@@ -27,7 +27,7 @@ public class ResponseWriter {
         writer.println();
 
         if(bodyLength != 0) {
-            writer.write(response.getRawBody());
+            writer.write(new String(response.getRawBody()));
         }
 
         writer.flush();

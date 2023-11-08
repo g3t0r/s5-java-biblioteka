@@ -2,13 +2,13 @@ package org.biblioteka.http;
 
 import java.util.Map;
 
-public class RawResponse extends Response<char[]> {
-    protected RawResponse(String protocol, HttpStatus status, Map<String, String> headers, char[] body) {
+public class RawResponse extends Response<byte[]> {
+    protected RawResponse(String protocol, HttpStatus status, Map<String, String> headers, byte[] body) {
         super(protocol, status, headers, body);
     }
 
     @Override
-    public char[] getRawBody() {
+    public byte[] getRawBody() {
         return getBody();
     }
 }

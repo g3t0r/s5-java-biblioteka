@@ -31,5 +31,5 @@ public abstract class Response<T> {
         return body;
     }
 
-    public abstract char[] getRawBody();
+    public abstract byte[] getRawBody();
 }

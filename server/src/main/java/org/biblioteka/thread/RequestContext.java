@@ -27,4 +27,8 @@ public class RequestContext {
     public UserAuthInfo getUserAuthInfo() {
         return userAuthInfo;
     }
+
+    public String getProtocol() {
+        return request.getProtocol();
+    }
 }
