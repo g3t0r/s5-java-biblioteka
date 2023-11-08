@@ -355,6 +355,10 @@ ALTER TABLE `zgloszenia`
   ADD CONSTRAINT `zgloszenia_ibfk_2` FOREIGN KEY (`ID_administratora`) REFERENCES `uzytkownik` (`ID_uzytkownika`);
 COMMIT;
 
+
+alter table uzytkownik MODIFY haslo varchar(50);
+UPDATE uzytkownik set haslo = 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14='; -- 'abc123'
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
