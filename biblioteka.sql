@@ -154,7 +154,7 @@ INSERT INTO `rezerwacja` (`nr_rezerwacji`, `od_kiedy`, `do_kiedy`, `ID_ksiazki`,
 --
 
 CREATE TABLE `uzytkownik` (
-  `ID_uzytkownika` int(4) NOT NULL,
+  `ID_uzytkownika` int(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `imie` varchar(20) NOT NULL,
   `nazwisko` varchar(20) NOT NULL,
   `adres` varchar(30) NOT NULL,
@@ -266,12 +266,6 @@ ALTER TABLE `rezerwacja`
   ADD KEY `ID_czytelnika` (`ID_czytelnika`);
 
 --
--- Indeksy dla tabeli `uzytkownik`
---
-ALTER TABLE `uzytkownik`
-  ADD PRIMARY KEY (`ID_uzytkownika`);
-
---
 -- Indeksy dla tabeli `wypozyczenie`
 --
 ALTER TABLE `wypozyczenie`
@@ -358,6 +352,7 @@ COMMIT;
 
 alter table uzytkownik MODIFY haslo varchar(50);
 UPDATE uzytkownik set haslo = 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14='; -- 'abc123'
+alter table uzytkownik drop column wiek;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

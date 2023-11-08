@@ -10,11 +10,11 @@ public class JsonRequest<T> extends Request<T> {
         super(method, uri, protocol, headers, body);
     }
 
-    public static <T> JsonRequest<T> fromRawRequest(final RawRequest rawRequest, Class<T> type) {
+    public static <T> JsonRequest<T> fromRawRequest(final RawRequest rawRequest, Class<T> bodyType) {
         return new JsonRequest<>(rawRequest.getMethod(),
                 rawRequest.getUri(),
                 rawRequest.getProtocol(),
                 rawRequest.getHeaders(),
-                new Gson().fromJson(String.valueOf(rawRequest.getBody()), type));
+                new Gson().fromJson(String.valueOf(rawRequest.getBody()), bodyType));
     }
 }

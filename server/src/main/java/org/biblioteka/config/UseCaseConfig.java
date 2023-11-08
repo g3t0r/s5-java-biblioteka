@@ -1,10 +1,7 @@
 package org.biblioteka.config;
 
 import org.biblioteka.http.HttpMethod;
-import org.biblioteka.usecase.GetAggregatedBooksUseCase;
-import org.biblioteka.usecase.GetTestDtoUseCase;
-import org.biblioteka.usecase.PostTestDtoUseCase;
-import org.biblioteka.usecase.UseCaseController;
+import org.biblioteka.usecase.*;
 
 public class UseCaseConfig {
 
@@ -13,5 +10,6 @@ public class UseCaseConfig {
         useCaseController.registerUseCase("/test", HttpMethod.POST, new PostTestDtoUseCase());
         useCaseController.registerUseCase("/test", HttpMethod.GET, new GetTestDtoUseCase());
         useCaseController.registerUseCase("/books", HttpMethod.GET, new GetAggregatedBooksUseCase());
+        useCaseController.registerUseCase("/signup", HttpMethod.POST, new SignUpUseCase());
     }
 }
