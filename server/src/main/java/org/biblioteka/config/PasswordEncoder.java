@@ -10,6 +10,14 @@ import java.util.Base64;
 
 public class PasswordEncoder {
 
+    private static PasswordEncoder instance;
+    public static PasswordEncoder getInstance() {
+        if(instance == null) {
+            instance = new PasswordEncoder();
+        }
+        return instance;
+    }
+
     private static final int SALT_SIZE = 16;
 
     public boolean matches(String rawPassword, String encodedPassword) {

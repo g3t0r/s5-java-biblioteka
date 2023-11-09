@@ -5,7 +5,8 @@ public enum HttpStatus {
     NO_CONTENT(204, "NO_CONTENT"),
     NOT_FOUND(404, "NOT_FOUND"),
     BAD_REQUEST(400, "BAD_REQUEST"),
-    INTERNAL_SERVER_ERROR(500, "INTERNAL_SERVER_ERROR");
+    INTERNAL_SERVER_ERROR(500, "INTERNAL_SERVER_ERROR"),
+    UNAUTHORIZED(401, "Unauthorized");
 
 
     HttpStatus(int code, String message) {

@@ -13,7 +13,7 @@ import org.biblioteka.thread.RequestContext;
 
 public class SignUpUseCase implements UseCase<JsonRequest<SignUpDto>, Response<Void>>{
 
-    private final PasswordEncoder encoder = new PasswordEncoder();
+    private final PasswordEncoder encoder = PasswordEncoder.getInstance();
     private final UserRepository userRepository = UserRepository.getInstance();
 
     @Override
