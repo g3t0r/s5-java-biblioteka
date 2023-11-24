@@ -4,6 +4,7 @@ import org.biblioteka.exceptions.ConfigError;
 import org.biblioteka.http.HttpMethod;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class UseCaseController {
@@ -35,7 +36,7 @@ public class UseCaseController {
         node.addUseCase(method, useCase);
     }
 
-    public UseCase<?, ?> getUseCase(final String uri, final HttpMethod method) {
+    public UseCase<?, ?> getUseCase(final String uri, final HttpMethod method, List<String> pathParams) {
         PathTreeNode node = root;
         String[] segments = uri
                 .replaceFirst("^/", "")
@@ -47,6 +48,9 @@ public class UseCaseController {
 
             if (child == null) {
                 child = node.children.get("*");
+                if(child != null) {
+                    pathParams.add(segments[i]);
+                }
             }
 
             if (child == null) {

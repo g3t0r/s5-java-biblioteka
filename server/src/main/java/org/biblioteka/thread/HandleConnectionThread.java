@@ -11,6 +11,8 @@ import org.biblioteka.usecase.UseCaseController;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HandleConnectionThread implements Runnable {
 
@@ -33,10 +35,11 @@ public class HandleConnectionThread implements Runnable {
 
                 UserAuthInfo authInfo = AuthenticationExtractor.extractAuthInfo(rawRequest);
                 RequestContext context = new RequestContext(rawRequest, authInfo);
+                List<String> pathParams = new ArrayList<>();
 
                 UseCase<?, ?> useCase = UseCaseController
                         .getInstance()
-                        .getUseCase(rawRequest.getUri().getPath(), rawRequest.getMethod());
+                        .getUseCase(rawRequest.getUri().getPath(), rawRequest.getMethod(), pathParams);
 
                 if(useCase == null) {
                     throw NotFoundException.build(rawRequest.getUri().getPath(), rawRequest.getMethod());
