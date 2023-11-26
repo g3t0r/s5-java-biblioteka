@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Lis 2023, 23:27
+-- Czas generowania: 26 Lis 2023, 11:09
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -154,13 +154,12 @@ INSERT INTO `rezerwacja` (`nr_rezerwacji`, `od_kiedy`, `do_kiedy`, `ID_ksiazki`,
 --
 
 CREATE TABLE `uzytkownik` (
-  `ID_uzytkownika` int(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `ID_uzytkownika` int(4) NOT NULL,
   `imie` varchar(20) NOT NULL,
   `nazwisko` varchar(20) NOT NULL,
   `adres` varchar(30) NOT NULL,
-  `wiek` int(2) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `haslo` varchar(8) NOT NULL,
+  `haslo` varchar(50) DEFAULT NULL,
   `rola` enum('pracownik','administrator','czytelnik') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
@@ -168,17 +167,18 @@ CREATE TABLE `uzytkownik` (
 -- Zrzut danych tabeli `uzytkownik`
 --
 
-INSERT INTO `uzytkownik` (`ID_uzytkownika`, `imie`, `nazwisko`, `adres`, `wiek`, `email`, `haslo`, `rola`) VALUES
-(1, 'Dawid', 'Nowak', 'Złota 12, Bydgoszcz 45-534', 33, 'dawid.nowak@gmail.com', 'abc123', 'administrator'),
-(2, 'Martyna', 'Bielak', 'Focha 54, Kraków 65-768', 27, 'martyna.bielak@gmail.com', 'abc456', 'pracownik'),
-(3, 'Agnieszka', 'Kowalska', 'Zdobywców 88, Kraków 55-132', 39, 'agnieszka.kowalska@gmail.com', 'abc789', 'pracownik'),
-(4, 'Stanisław', 'Kwiatkoski', 'Długa 34, Zakopane 85-613', 35, 'stanislaw.kwiatkoski@gmail.com', 'abc012', 'pracownik'),
-(5, 'Miłosz', 'Ptak', 'Drzymały 15, Bochnia 23-702', 19, 'milosz.ptak@gmail.com', 'qwe123', 'czytelnik'),
-(6, 'Damian', 'Kozak', 'Hetmańska 3, Warszawa 19-180', 30, 'damian.kozak@gmail.com', 'rty123', 'czytelnik'),
-(7, 'Radosław', 'Dudzic', 'Żegotka 41, Limanowa 11-292', 22, 'radoslaw.dudzic@gmail.com', 'uio123', 'czytelnik'),
-(8, 'Dominik', 'Duda', 'Pszczelarska 6, Kraków 55-786', 17, 'dominik.duda@gamil.com', 'pas123', 'czytelnik'),
-(9, 'Natalia', 'Ptaszek', 'Focha 66, Kraków 65-768', 22, 'natalia.ptaszek@gmail.com', 'dfg123', 'czytelnik'),
-(10, 'Angelika', 'Tomala', 'Wodna 16, Warszawa 39-715', 31, 'angelika.tomala@gmail.com', 'jkl123', 'czytelnik');
+INSERT INTO `uzytkownik` (`ID_uzytkownika`, `imie`, `nazwisko`, `adres`, `email`, `haslo`, `rola`) VALUES
+(1, 'Dawid', 'Nowak', 'Złota 12, Bydgoszcz 45-534', 'dawid.nowak@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'administrator'),
+(2, 'Martyna', 'Bielak', 'Focha 54, Kraków 65-768', 'martyna.bielak@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'pracownik'),
+(3, 'Agnieszka', 'Kowalska', 'Zdobywców 88, Kraków 55-132', 'agnieszka.kowalska@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'pracownik'),
+(4, 'Stanisław', 'Kwiatkoski', 'Długa 34, Zakopane 85-613', 'stanislaw.kwiatkoski@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'pracownik'),
+(5, 'Miłosz', 'Ptak', 'Drzymały 15, Bochnia 23-702', 'milosz.ptak@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
+(6, 'Damian', 'Kozak', 'Hetmańska 3, Warszawa 19-180', 'damian.kozak@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
+(7, 'Radosław', 'Dudzic', 'Żegotka 41, Limanowa 11-292', 'radoslaw.dudzic@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
+(8, 'Dominik', 'Duda', 'Pszczelarska 6, Kraków 55-786', 'dominik.duda@gamil.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
+(9, 'Natalia', 'Ptaszek', 'Focha 66, Kraków 65-768', 'natalia.ptaszek@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
+(10, 'Angelika', 'Tomala', 'Wodna 16, Warszawa 39-715', 'angelika.tomala@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
+(11, 'Jan', 'Kowalski', 'Krakow', 'jkowalski1@mail.com', 'B9xByilF90f4C3TOyKgLfgxBlYc54h8bd0aktRk2FOA=', 'czytelnik');
 
 -- --------------------------------------------------------
 
@@ -190,7 +190,7 @@ CREATE TABLE `wypozyczenie` (
   `nr_wypozyczenia` int(4) NOT NULL,
   `od_kiedy` date NOT NULL,
   `do_kiedy` date NOT NULL,
-  `kiedy_zwrocono` date NOT NULL,
+  `kiedy_zwrocono` date DEFAULT NULL,
   `ID_ksiazki` int(4) NOT NULL,
   `ID_czytelnika` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
@@ -266,6 +266,12 @@ ALTER TABLE `rezerwacja`
   ADD KEY `ID_czytelnika` (`ID_czytelnika`);
 
 --
+-- Indeksy dla tabeli `uzytkownik`
+--
+ALTER TABLE `uzytkownik`
+  ADD PRIMARY KEY (`ID_uzytkownika`);
+
+--
 -- Indeksy dla tabeli `wypozyczenie`
 --
 ALTER TABLE `wypozyczenie`
@@ -302,6 +308,18 @@ ALTER TABLE `recenzje`
 --
 ALTER TABLE `rezerwacja`
   MODIFY `nr_rezerwacji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT dla tabeli `uzytkownik`
+--
+ALTER TABLE `uzytkownik`
+  MODIFY `ID_uzytkownika` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT dla tabeli `wypozyczenie`
+--
+ALTER TABLE `wypozyczenie`
+  MODIFY `nr_wypozyczenia` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT dla tabeli `zgloszenia`
@@ -348,11 +366,6 @@ ALTER TABLE `zgloszenia`
   ADD CONSTRAINT `zgloszenia_ibfk_1` FOREIGN KEY (`ID_pracownika`) REFERENCES `uzytkownik` (`ID_uzytkownika`),
   ADD CONSTRAINT `zgloszenia_ibfk_2` FOREIGN KEY (`ID_administratora`) REFERENCES `uzytkownik` (`ID_uzytkownika`);
 COMMIT;
-
-
-alter table uzytkownik MODIFY haslo varchar(50);
-UPDATE uzytkownik set haslo = 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14='; -- 'abc123'
-alter table uzytkownik drop column wiek;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
