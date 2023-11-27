@@ -21,16 +21,16 @@ public class BorrowBookUseCase implements UseCase<JsonRequest<SimpleRental>, Jso
         Rental rent = new Rental();
 
         rent.setToday(LocalDate.now());
-        rent.setBookId(form.bookId);
-        rent.setUserId(form.userId);
-        rent.setUntil(LocalDate.parse(form.until));
+        rent.setCopyId(form.getCopyId());
+        rent.setUserId(form.getUserId());
+        rent.setUntil(LocalDate.parse(form.getUntil()));
 
         Rental rental = rentalRepository.add(rent);
 
         SimpleRental result = new SimpleRental();
-        result.bookId = rental.getBookId();
-        result.userId = rental.getUserId();
-        result.until = rental.getUntil().toString();
+        result.setCopyId(rental.getCopyId());
+        result.setUserId(rental.getUserId());
+        result.setUntil(rental.getUntil().toString());
 
         return JsonResponse.ok(requestContext.getProtocol(), result);
     }

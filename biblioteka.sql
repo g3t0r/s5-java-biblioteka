@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 26 Lis 2023, 11:09
+-- Czas generowania: 27 Lis 2023, 20:17
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -24,6 +24,56 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `egzemplarz`
+--
+
+CREATE TABLE `egzemplarz` (
+  `ID_egzemplarzu` int(4) NOT NULL,
+  `wydawnictwo` varchar(20) NOT NULL,
+  `rok_wydania` date NOT NULL,
+  `czy_dostepna` tinyint(1) NOT NULL,
+  `ID_ksiazki` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `egzemplarz`
+--
+
+INSERT INTO `egzemplarz` (`ID_egzemplarzu`, `wydawnictwo`, `rok_wydania`, `czy_dostepna`, `ID_ksiazki`) VALUES
+(1, 'Bellona', '1884-05-31', 1, 1),
+(2, 'Bellona', '1884-05-31', 1, 1),
+(3, 'Replika', '1889-06-02', 1, 2),
+(4, 'W.A.B.', '2022-10-05', 1, 3),
+(5, 'Prószyński i S-ka', '2023-09-05', 1, 4),
+(6, 'Czarna Owca', '2023-10-20', 1, 5),
+(7, 'NieZwykłe', '2022-03-08', 1, 6),
+(8, 'Martel', '2023-09-13', 1, 7),
+(9, 'Świat Książki', '2018-08-14', 1, 8),
+(10, 'Czwarta Strona', '2022-05-17', 1, 9),
+(11, 'Marginesy', '2018-05-08', 1, 10),
+(12, 'Czarna Owca', '2014-10-14', 1, 11),
+(13, 'Czarna Owca', '2014-10-14', 1, 11),
+(14, 'Literack', '2018-03-21', 1, 12),
+(15, 'Znak', '2016-09-12', 1, 13),
+(16, 'Filia', '2020-05-08', 1, 14),
+(17, 'Czarna Owca', '2019-02-14', 1, 15),
+(18, 'PWN', '2016-08-25', 1, 16),
+(19, 'SuperNowa', '1992-05-10', 1, 17),
+(20, 'XYZ', '1873-11-19', 1, 18),
+(21, 'XYZ', '1997-09-15', 1, 19),
+(22, 'XYZ', '2009-03-12', 1, 20),
+(23, 'Media Rodzina', '2000-04-27', 1, 21),
+(24, 'XYZ', '1603-05-21', 1, 22),
+(25, 'Clio', '2007-09-10', 1, 23),
+(26, 'Znak', '2014-09-03', 1, 24),
+(27, 'XYZ', '1873-11-19', 1, 18),
+(28, 'Czarna Owca', '2016-11-10', 1, 25),
+(29, 'Amber', '1954-07-29', 1, 26),
+(30, 'Nasza Księgarnia', '2007-10-02', 1, 27);
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `ksiazka`
 --
 
@@ -31,47 +81,41 @@ CREATE TABLE `ksiazka` (
   `ID_ksiazki` int(4) NOT NULL,
   `tytul` varchar(30) NOT NULL,
   `autor` varchar(30) NOT NULL,
-  `wydawnictwo` varchar(20) NOT NULL,
-  `rok_wydania` date NOT NULL,
-  `kategoria` enum('klasyczna','naukowa','dla_dzieci','dla_młodziezy','kryminal','triller','fantastyka','podroznicza','historia','romans','popularnonaukowa','dramat') NOT NULL,
-  `czy_dostepna` tinyint(1) NOT NULL
+  `kategoria` enum('klasyczna','naukowa','dla_dzieci','dla_młodziezy','kryminal','triller','fantastyka','podroznicza','historia','romans','popularnonaukowa','dramat') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `ksiazka`
 --
 
-INSERT INTO `ksiazka` (`ID_ksiazki`, `tytul`, `autor`, `wydawnictwo`, `rok_wydania`, `kategoria`, `czy_dostepna`) VALUES
-(1, 'Ogniem i mieczem', 'Henryk Sienkiewicz', 'Bellona', '1884-05-31', 'klasyczna', 1),
-(2, 'Ogniem i mieczem', 'Henryk Sienkiewicz', 'Bellona', '1884-05-31', 'klasyczna', 1),
-(3, 'Dewajtis', 'Maria Rodziewiczówna', 'Replika', '1889-06-02', 'klasyczna', 1),
-(4, 'Ukochane dziecko', 'Romy Hausmann', 'W.A.B.', '2022-10-05', 'triller', 1),
-(5, 'Holly', 'Stephen King', 'Prószyński i S-ka', '2023-09-05', 'kryminal', 1),
-(6, 'Kukułcze jajo', 'Camilla Läckberg', 'Czarna Owca', '2023-10-20', 'triller', 1),
-(7, 'Clone', 'Aleksandra Negrońska', 'NieZwykłe', '2022-03-08', 'romans', 1),
-(8, 'Świat POLI pytaj do woli', 'Irena Mąsior', 'Martel', '2023-09-13', 'dla_dzieci', 1),
-(9, 'Gdzie śpiewają raki', 'Delia Owens', 'Świat Książki', '2018-08-14', 'klasyczna', 1),
-(10, 'Żar', 'Weronika Mathia', 'Czwarta Strona', '2022-05-17', 'kryminal', 0),
-(11, 'Żmijowisko', 'Wojciech Chmielarz', 'Marginesy', '2018-05-08', 'triller', 1),
-(12, 'Poszukiwacz zwłok', 'Mieczysław Gorzka', 'Czarna Owca', '2014-10-14', 'triller', 1),
-(13, 'Poszukiwacz zwłok', 'Mieczysław Gorzka', 'Czarna Owca', '2014-10-14', 'triller', 1),
-(14, 'Intryga nocnych motyli', 'Anna Zawadzka', 'Literack', '2018-03-21', 'kryminal', 1),
-(15, 'Zagubiony świat', 'Krzysztof Nowak', 'Znak', '2016-09-12', 'dla_młodziezy', 1),
-(16, 'Tajemnice starej willi', 'Joanna Kowalska', 'Filia', '2020-05-08', 'dramat', 1),
-(17, 'Niebezpieczne uroki miłości', 'Joanna Sasin', 'Czarna Owca', '2019-02-14', 'romans', 1),
-(18, ' Od Darwina do genomiki', 'Richard Dawkins', 'PWN', '2016-08-25', 'naukowa', 1),
-(19, 'Miecz Przeznaczenia', 'Andrzej Sapkowski', 'SuperNowa', '1992-05-10', 'fantastyka', 0),
-(20, 'W 80 dni dookoła świata', 'Jules Verne', 'XYZ', '1873-11-19', 'podroznicza', 1),
-(21, 'Przygody popularnej nauki', 'Carl Sagan', 'XYZ', '1997-09-15', 'popularnonaukowa', 1),
-(22, 'Zrozumieć teorię względności', 'John Gribbin', 'XYZ', '2009-03-12', 'naukowa', 1),
-(23, 'Harry Potter', 'J.K. Rowling', 'Media Rodzina', '2000-04-27', 'dla_młodziezy', 1),
-(24, 'Hamlet', 'William Shakespeare', 'XYZ', '1603-05-21', 'dramat', 1),
-(25, 'Dzieje Polski', 'Norman Davies', 'Clio', '2007-09-10', 'historia', 1),
-(26, 'Sapiens: Od zwierząt do bogów', 'Yuval Noah Harari', 'Znak', '2014-09-03', 'historia', 1),
-(27, 'W 80 dni dookoła świata', 'Jules Verne', 'XYZ', '1873-11-19', 'podroznicza', 1),
-(28, 'Szeptani przez bakterie', 'Rob Knight', 'Czarna Owca', '2016-11-10', 'popularnonaukowa', 1),
-(29, 'Władca Pierścieni', 'J.R.R. Tolkien', 'Amber', '1954-07-29', 'fantastyka', 1),
-(30, 'Złodziejka książek', 'Markus Zusak', 'Nasza Księgarnia', '2007-10-02', 'dla_młodziezy', 1);
+INSERT INTO `ksiazka` (`ID_ksiazki`, `tytul`, `autor`, `kategoria`) VALUES
+(1, 'Ogniem i mieczem', 'Henryk Sienkiewicz', 'klasyczna'),
+(2, 'Dewajtis', 'Maria Rodziewiczówna', 'klasyczna'),
+(3, 'Ukochane dziecko', 'Romy Hausmann', 'triller'),
+(4, 'Holly', 'Stephen King', 'kryminal'),
+(5, 'Kukułcze jajo', 'Camilla Läckberg', 'triller'),
+(6, 'Clone', 'Aleksandra Negrońska', 'romans'),
+(7, 'Świat POLI pytaj do woli', 'Irena Mąsior', 'dla_dzieci'),
+(8, 'Gdzie śpiewają raki', 'Delia Owens', 'klasyczna'),
+(9, 'Żar', 'Weronika Mathia', 'kryminal'),
+(10, 'Żmijowisko', 'Wojciech Chmielarz', 'triller'),
+(11, 'Poszukiwacz zwłok', 'Mieczysław Gorzka', 'triller'),
+(12, 'Intryga nocnych motyli', 'Anna Zawadzka', 'kryminal'),
+(13, 'Zagubiony świat', 'Krzysztof Nowak', 'dla_młodziezy'),
+(14, 'Tajemnice starej willi', 'Joanna Kowalska', 'dramat'),
+(15, 'Niebezpieczne uroki miłości', 'Joanna Sasin', 'romans'),
+(16, ' Od Darwina do genomiki', 'Richard Dawkins', 'naukowa'),
+(17, 'Miecz Przeznaczenia', 'Andrzej Sapkowski', 'fantastyka'),
+(18, 'W 80 dni dookoła świata', 'Jules Verne', 'podroznicza'),
+(19, 'Przygody popularnej nauki', 'Carl Sagan', 'popularnonaukowa'),
+(20, 'Zrozumieć teorię względności', 'John Gribbin', 'naukowa'),
+(21, 'Harry Potter', 'J.K. Rowling', 'dla_młodziezy'),
+(22, 'Hamlet', 'William Shakespeare', 'dramat'),
+(23, 'Dzieje Polski', 'Norman Davies', 'historia'),
+(24, 'Sapiens: Od zwierząt do bogów', 'Yuval Noah Harari', 'historia'),
+(25, 'Szeptani przez bakterie', 'Rob Knight', 'popularnonaukowa'),
+(26, 'Władca Pierścieni', 'J.R.R. Tolkien', 'fantastyka'),
+(27, 'Złodziejka książek', 'Markus Zusak', 'dla_młodziezy');
 
 -- --------------------------------------------------------
 
@@ -134,7 +178,7 @@ CREATE TABLE `rezerwacja` (
   `nr_rezerwacji` int(11) NOT NULL,
   `od_kiedy` date NOT NULL,
   `do_kiedy` date NOT NULL,
-  `ID_ksiazki` int(4) NOT NULL,
+  `ID_egzemplarzu` int(4) NOT NULL,
   `ID_czytelnika` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
@@ -142,7 +186,7 @@ CREATE TABLE `rezerwacja` (
 -- Zrzut danych tabeli `rezerwacja`
 --
 
-INSERT INTO `rezerwacja` (`nr_rezerwacji`, `od_kiedy`, `do_kiedy`, `ID_ksiazki`, `ID_czytelnika`) VALUES
+INSERT INTO `rezerwacja` (`nr_rezerwacji`, `od_kiedy`, `do_kiedy`, `ID_egzemplarzu`, `ID_czytelnika`) VALUES
 (1, '2023-10-30', '2023-11-02', 1, 5),
 (2, '2023-09-05', '2023-09-08', 13, 5),
 (3, '2023-08-07', '2023-08-14', 17, 10);
@@ -191,7 +235,7 @@ CREATE TABLE `wypozyczenie` (
   `od_kiedy` date NOT NULL,
   `do_kiedy` date NOT NULL,
   `kiedy_zwrocono` date DEFAULT NULL,
-  `ID_ksiazki` int(4) NOT NULL,
+  `ID_egzemplarzu` int(4) NOT NULL,
   `ID_czytelnika` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
@@ -199,7 +243,7 @@ CREATE TABLE `wypozyczenie` (
 -- Zrzut danych tabeli `wypozyczenie`
 --
 
-INSERT INTO `wypozyczenie` (`nr_wypozyczenia`, `od_kiedy`, `do_kiedy`, `kiedy_zwrocono`, `ID_ksiazki`, `ID_czytelnika`) VALUES
+INSERT INTO `wypozyczenie` (`nr_wypozyczenia`, `od_kiedy`, `do_kiedy`, `kiedy_zwrocono`, `ID_egzemplarzu`, `ID_czytelnika`) VALUES
 (1, '2023-07-04', '2023-09-04', '2023-09-02', 7, 6),
 (2, '2023-08-09', '2023-10-09', '2023-10-26', 8, 6),
 (3, '2023-08-23', '2023-10-23', '2023-10-22', 9, 7),
@@ -236,6 +280,13 @@ INSERT INTO `zgloszenia` (`nr_zgloszenia`, `temat`, `opis_problemu`, `data`, `ID
 --
 
 --
+-- Indeksy dla tabeli `egzemplarz`
+--
+ALTER TABLE `egzemplarz`
+  ADD PRIMARY KEY (`ID_egzemplarzu`),
+  ADD KEY `ID_ksiazki` (`ID_ksiazki`);
+
+--
 -- Indeksy dla tabeli `ksiazka`
 --
 ALTER TABLE `ksiazka`
@@ -262,7 +313,7 @@ ALTER TABLE `recenzje`
 --
 ALTER TABLE `rezerwacja`
   ADD PRIMARY KEY (`nr_rezerwacji`),
-  ADD KEY `ID_ksiazki` (`ID_ksiazki`),
+  ADD KEY `ID_egzemplarzu` (`ID_egzemplarzu`),
   ADD KEY `ID_czytelnika` (`ID_czytelnika`);
 
 --
@@ -276,7 +327,7 @@ ALTER TABLE `uzytkownik`
 --
 ALTER TABLE `wypozyczenie`
   ADD PRIMARY KEY (`nr_wypozyczenia`),
-  ADD KEY `ID_ksiazki` (`ID_ksiazki`),
+  ADD KEY `ID_egzemplarzu` (`ID_egzemplarzu`),
   ADD KEY `ID_czytelnika` (`ID_czytelnika`);
 
 --
@@ -290,6 +341,18 @@ ALTER TABLE `zgloszenia`
 --
 -- AUTO_INCREMENT dla zrzuconych tabel
 --
+
+--
+-- AUTO_INCREMENT dla tabeli `egzemplarz`
+--
+ALTER TABLE `egzemplarz`
+  MODIFY `ID_egzemplarzu` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT dla tabeli `ksiazka`
+--
+ALTER TABLE `ksiazka`
+  MODIFY `ID_ksiazki` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT dla tabeli `oplata`
@@ -332,6 +395,12 @@ ALTER TABLE `zgloszenia`
 --
 
 --
+-- Ograniczenia dla tabeli `egzemplarz`
+--
+ALTER TABLE `egzemplarz`
+  ADD CONSTRAINT `egzemplarz_ibfk_1` FOREIGN KEY (`ID_ksiazki`) REFERENCES `ksiazka` (`ID_ksiazki`);
+
+--
 -- Ograniczenia dla tabeli `oplata`
 --
 ALTER TABLE `oplata`
@@ -349,14 +418,14 @@ ALTER TABLE `recenzje`
 -- Ograniczenia dla tabeli `rezerwacja`
 --
 ALTER TABLE `rezerwacja`
-  ADD CONSTRAINT `rezerwacja_ibfk_1` FOREIGN KEY (`ID_ksiazki`) REFERENCES `ksiazka` (`ID_ksiazki`),
+  ADD CONSTRAINT `rezerwacja_ibfk_1` FOREIGN KEY (`ID_egzemplarzu`) REFERENCES `egzemplarz` (`ID_egzemplarzu`),
   ADD CONSTRAINT `rezerwacja_ibfk_2` FOREIGN KEY (`ID_czytelnika`) REFERENCES `uzytkownik` (`ID_uzytkownika`);
 
 --
 -- Ograniczenia dla tabeli `wypozyczenie`
 --
 ALTER TABLE `wypozyczenie`
-  ADD CONSTRAINT `wypozyczenie_ibfk_1` FOREIGN KEY (`ID_ksiazki`) REFERENCES `ksiazka` (`ID_ksiazki`),
+  ADD CONSTRAINT `wypozyczenie_ibfk_1` FOREIGN KEY (`ID_egzemplarzu`) REFERENCES `egzemplarz` (`ID_egzemplarzu`),
   ADD CONSTRAINT `wypozyczenie_ibfk_2` FOREIGN KEY (`ID_czytelnika`) REFERENCES `uzytkownik` (`ID_uzytkownika`);
 
 --

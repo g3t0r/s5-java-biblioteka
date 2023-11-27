@@ -3,18 +3,18 @@ package org.biblioteka.model;
 import java.time.LocalDate;
 
 public class Rental {
-    private Integer bookId;
+    private Integer copyId;
     private Integer userId;
     private Integer rentalId;
     private LocalDate today;
     private LocalDate until;
     private LocalDate given;
 
-    public Integer getBookId() {
-        return bookId;
+    public Integer getCopyId() {
+        return copyId;
     }
-    public void setBookId(Integer bookId) {
-        this.bookId = bookId;
+    public void setCopyId(Integer copyId) {
+        this.copyId = copyId;
     }
     public Integer getUserId() {
         return userId;
@@ -54,7 +54,7 @@ public class Rental {
                 ", when='" + today + '\'' +
                 ", until='" + until + '\'' +
                 ", given='" + given + '\'' +
-                ", book='" + bookId + '\'' +
+                ", copy='" + copyId + '\'' +
                 ", user=" + userId +
                 '}';
     }

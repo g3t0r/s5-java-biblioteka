@@ -18,9 +18,9 @@ public class LogInUseCase implements UseCase<JsonRequest<LogInDto>, JsonResponse
                 .fromRawRequest(requestContext.getRequest(), LogInDto.class)
                 .getBody();
 
-        User user = userRepository.findByEmail(form.email);
+        User user = userRepository.findByEmail(form.getEmail());
 
-        if(user == null || !encoder.matches(form.password, user.getPassword())) {
+        if(user == null || !encoder.matches(form.getPassword(), user.getPassword())) {
             throw new UnauthorizedException("Incorrect email or password");
         }
 

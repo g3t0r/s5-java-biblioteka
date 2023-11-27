@@ -14,8 +14,9 @@ public class BookRepository {
 
     private final Connection conn;
     private final static String SEARCH_AGGREGATED_BOOKS_QUERY =
-            "select k.tytul, k.autor, k.kategoria, sum(k.czy_dostepna) as available, count(k.ID_ksiazki) as total " +
-                    "from ksiazka k GROUP BY k.tytul, k.autor, k.kategoria";
+            "SELECT k.tytul, k.autor, k.kategoria, SUM(e.czy_dostepna) AS available, COUNT(e.ID_egzemplarzu) " +
+                    "AS total FROM ksiazka k JOIN egzemplarz e ON k.ID_ksiazki = e.ID_ksiazki GROUP BY k.tytul, " +
+                    "k.autor, k.kategoria;";
 
     public List<AggregatedBooks> searchAggregatedBooks(String text) {
 

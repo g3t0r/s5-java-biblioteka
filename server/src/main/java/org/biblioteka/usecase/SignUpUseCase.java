@@ -22,25 +22,25 @@ public class SignUpUseCase implements UseCase<JsonRequest<SignUpDto>, Response<V
                .fromRawRequest(requestContext.getRequest(), SignUpDto.class)
                .getBody();
 
-       if(userRepository.findByEmail(form.email) != null) {
+       if(userRepository.findByEmail(form.getEmail()) != null) {
           throw new ValidationException("Email already taken");
        }
 
         User user = new User();
-        user.setName(form.name);
-        user.setSurname(form.surname);
-        user.setEmail(form.email);
-        user.setAddress(form.address);
+        user.setName(form.getName());
+        user.setSurname(form.getSurname());
+        user.setEmail(form.getEmail());
+        user.setAddress(form.getAddress());
 
-        String rawPassword = form.password;
+        String rawPassword = form.getPassword();
         if(rawPassword == null || rawPassword.isBlank() || rawPassword.isEmpty()) {
             throw new ValidationException("Password must not be empty");
         }
 
         try {
-            user.setRole(Role.fromString(form.role));
+            user.setRole(Role.fromString(form.getRole()));
         } catch(IllegalArgumentException e) {
-            throw new ValidationException("Incorrect role: " + form.role);
+            throw new ValidationException("Incorrect role: " + form.getRole());
         }
 
         user.setPassword(encoder.encode(rawPassword));

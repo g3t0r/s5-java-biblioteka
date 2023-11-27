@@ -10,7 +10,7 @@ public class RentalRepository {
 
     public Rental add(Rental rental) {
 
-        String query = "insert into wypozyczenie ( od_kiedy, do_kiedy, kiedy_zwrocono, ID_ksiazki , ID_czytelnika)" +
+        String query = "insert into wypozyczenie ( od_kiedy, do_kiedy, kiedy_zwrocono, ID_egzemplarzu , ID_czytelnika)" +
                 " values (?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)
@@ -24,7 +24,7 @@ public class RentalRepository {
                 statement.setDate(3, Date.valueOf(rental.getGiven()));
 
             }
-            statement.setInt(4, rental.getBookId());
+            statement.setInt(4, rental.getCopyId());
             statement.setInt(5, rental.getUserId());
 
             statement.executeUpdate();
