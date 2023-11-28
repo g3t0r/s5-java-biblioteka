@@ -28,8 +28,8 @@ public class SignInViewController {
     @FXML
     private void submitForm() throws Exception{
         LogInDto dto = new LogInDto();
-        dto.email = email.getText();
-        dto.password = password.getText();
+        dto.setEmail(email.getText());
+        dto.setPassword(password.getText());
         Future<UserDTO> response =  httpService
                 .post("http://localhost:2020/login", dto, UserDTO.class);
         UserDTO user = response.get(10, TimeUnit.SECONDS);

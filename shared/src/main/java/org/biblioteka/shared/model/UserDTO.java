@@ -1,13 +1,13 @@
 package org.biblioteka.shared.model;
 
 public class UserDTO {
-    public Integer id;
-    public String name;
-    public String surname;
-    public String address;
-    public String email;
-    public String password;
-    public String role;
+    private Integer id;
+    private String name;
+    private String surname;
+    private String address;
+    private String email;
+    private String password;
+    private String role;
 
     public Integer getId() {
         return id;
