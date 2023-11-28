@@ -7,7 +7,6 @@ plugins {
 }
 
 group 'org.biblioteka'
-version '1.0-SNAPSHOT'
 
 repositories {
   mavenCentral()
@@ -25,7 +24,6 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-  mainModule = 'org.biblioteka.client'
   mainClass = 'org.biblioteka.client.HelloApplication'
 }
 
@@ -35,7 +33,9 @@ javafx {
 }
 
 dependencies {
-
+  implementation('com.google.code.gson:gson:2.10.1')
+  implementation("com.squareup.okhttp3:okhttp:4.11.0")
+  implementation project(path: ':shared')
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
@@ -53,4 +53,8 @@ jlink {
 
 jlinkZip {
   group = 'distribution'
+}
+
+task prepareKotlinBuildScriptModel {
+
 }

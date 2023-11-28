@@ -1,4 +1,4 @@
-package org.biblioteka.client;
+package org.biblioteka.client.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

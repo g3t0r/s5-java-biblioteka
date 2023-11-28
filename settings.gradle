@@ -1,3 +1,5 @@
 rootProject.name = 'java-biblioteka'
 include 'server'
+include 'shared'
+include 'client'
 

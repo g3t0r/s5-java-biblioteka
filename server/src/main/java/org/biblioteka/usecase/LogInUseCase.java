@@ -4,9 +4,9 @@ import org.biblioteka.config.PasswordEncoder;
 import org.biblioteka.exceptions.UnauthorizedException;
 import org.biblioteka.http.JsonRequest;
 import org.biblioteka.http.JsonResponse;
-import org.biblioteka.model.LogInDto;
 import org.biblioteka.model.User;
 import org.biblioteka.repository.UserRepository;
+import org.biblioteka.shared.model.LogInDto;
 import org.biblioteka.thread.RequestContext;
 
 public class LogInUseCase implements UseCase<JsonRequest<LogInDto>, JsonResponse<User>> {
