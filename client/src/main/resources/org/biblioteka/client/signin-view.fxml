@@ -11,20 +11,12 @@
                 <Font size="32.0" />
             </font>
         </Label>
-        <fx:define>
-            <ToggleGroup fx:id="group" />
-        </fx:define>
-        <RadioButton layoutX="479.0" layoutY="243.0" mnemonicParsing="false" selected="true" text="Klient">
-         <toggleGroup>
-            <ToggleGroup fx:id="group" />
-         </toggleGroup></RadioButton>
-        <RadioButton layoutX="551.0" layoutY="243.0" mnemonicParsing="false" text="Pracownik" toggleGroup="$group" />
-        <RadioButton layoutX="656.0" layoutY="243.0" mnemonicParsing="false" text="Admin" toggleGroup="$group" />
         <Label layoutX="479.0" layoutY="288.0" text="Email" />
         <TextField fx:id="email" layoutX="479.0" layoutY="304.0" prefHeight="24.0" prefWidth="247.0" />
         <PasswordField fx:id="password" layoutX="479.0" layoutY="355.0" prefHeight="24.0" prefWidth="247.0" />
         <Label layoutX="480.0" layoutY="339.0" text="Hasło" />
         <Button fx:id="submitButton" layoutX="566.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#submitForm" text="Zaloguj" />
-      <Label layoutX="559.0" layoutY="437.0" text="Utwórz konto" onMouseClicked="#navigateToSignUp" />
+      <Label layoutX="559.0" layoutY="437.0" onMouseClicked="#navigateToSignUp" text="Utwórz konto" />
+      <Label fx:id="errorLabel" layoutX="481.0" layoutY="261.0" textFill="RED" />
     </children>
 </AnchorPane>

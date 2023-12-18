@@ -1,16 +1,15 @@
 package org.biblioteka.client.controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import org.biblioteka.client.config.RegisteredView;
 import org.biblioteka.client.service.HttpService;
 import org.biblioteka.client.service.SceneService;
 import org.biblioteka.shared.model.LogInDto;
 import org.biblioteka.shared.model.UserDTO;
-
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 public class SignInViewController {
 
@@ -18,7 +17,7 @@ public class SignInViewController {
 
 
     @FXML
-    private ToggleGroup group;
+    private Label errorLabel;
 
     @FXML
     private TextField email;
@@ -28,22 +27,21 @@ public class SignInViewController {
 
     @FXML
     private void navigateToSignUp() {
-        SceneService.getInstance().activate("sign-up");
+        SceneService.getInstance().activate(RegisteredView.SIGN_UP);
     }
 
     @FXML
-    private void submitForm() throws Exception{
+    private void submitForm() throws Exception {
         LogInDto dto = new LogInDto();
         dto.setEmail(email.getText());
         dto.setPassword(password.getText());
-        Future<UserDTO> response =  httpService
-                .post("http://localhost:2020/login", dto, UserDTO.class);
-        UserDTO user = response.get(10, TimeUnit.SECONDS);
-        if(user == null) {
-            System.out.println("Login failed");
-        } else {
-            System.out.println(user);
-        }
+
+        httpService.post("http://localhost:2020/login", dto, UserDTO.class,
+                (userDto) -> {
+                    SceneService.getInstance().addPane(RegisteredView.BOOK_TABLE);
+                    SceneService.getInstance().activate(RegisteredView.BOOK_TABLE);
+                },
+                (errorDto) -> Platform.runLater(() -> errorLabel.setText(errorDto.message)));
     }
 
 }

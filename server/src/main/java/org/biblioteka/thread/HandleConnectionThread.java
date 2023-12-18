@@ -2,7 +2,7 @@ package org.biblioteka.thread;
 
 import org.biblioteka.auth.AuthenticationExtractor;
 import org.biblioteka.auth.UserAuthInfo;
-import org.biblioteka.dto.ErrorDTO;
+import org.biblioteka.shared.model.ErrorDTO;
 import org.biblioteka.exceptions.Http4xxException;
 import org.biblioteka.exceptions.NotFoundException;
 import org.biblioteka.http.*;
