@@ -5,6 +5,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import org.biblioteka.client.service.HttpService;
+import org.biblioteka.client.service.SceneService;
 import org.biblioteka.shared.model.LogInDto;
 import org.biblioteka.shared.model.UserDTO;
 
@@ -24,6 +25,11 @@ public class SignInViewController {
 
     @FXML
     private PasswordField password;
+
+    @FXML
+    private void navigateToSignUp() {
+        SceneService.getInstance().activate("sign-up");
+    }
 
     @FXML
     private void submitForm() throws Exception{

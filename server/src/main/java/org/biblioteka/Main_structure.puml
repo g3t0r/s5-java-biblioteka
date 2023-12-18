@@ -1,0 +1,385 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": false,
+    "showMethodParameterNames": false,
+    "showMethodParameterTypes": false,
+    "showMethodReturnType": false,
+    "showPackageLevels": 5,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "org.biblioteka.Main",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_587354046 { 
+   	label=biblioteka
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Main571951368[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Main</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+subgraph cluster_1655421070 { 
+   	label=config
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   DatabaseConfig1266427624[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DatabaseConfig</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PasswordEncoder1266427624[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PasswordEncoder</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UseCaseConfig1266427624[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UseCaseConfig</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2079778632 { 
+   	label=http
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   JsonRequest913202606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JsonRequest&lt;T&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+JsonResponse913202606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JsonResponse&lt;T&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Request913202606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Request&lt;T&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   body: T [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   headers: Map&lt;String, String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   method: HttpMethod [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   protocol: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   uri: URI [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Response913202606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Response&lt;T&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   body: T [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   headers: Map&lt;String, String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   protocol: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   status: HttpStatus [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_83756922 { 
+   	label=repository
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   BookRepository1801634832[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BookRepository</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   conn: Connection [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RentalRepository1801634832[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RentalRepository</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   conn: Connection [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UserRepository1801634832[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UserRepository</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   conn: Connection [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_877140217 { 
+   	label=usecase
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   BorrowBookUseCase494143919[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BorrowBookUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   rentalRepository: RentalRepository [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GetAggregatedBooksUseCase494143919[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GetAggregatedBooksUseCase</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GetTestDtoUseCase494143919[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GetTestDtoUseCase</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LogInUseCase494143919[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LogInUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   encoder: PasswordEncoder [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   userRepository: UserRepository [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PostTestDtoUseCase494143919[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PostTestDtoUseCase</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SignUpUseCase494143919[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SignUpUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   encoder: PasswordEncoder [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   userRepository: UserRepository [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UseCaseController494143919[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UseCaseController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   root: PathTreeNode [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+subgraph cluster_2031291660 { 
+   	label=UseCaseController
+	labeljust=l
+	fillcolor="#c4c4c4"
+	style=filled
+   
+   PathTreeNode1910611414[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PathTreeNode</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   children: Map&lt;String, PathTreeNode&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   methodUseCaseMap: Map&lt;HttpMethod, UseCase&lt;?, ?&gt;&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   segment: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+} 
+
+'edges    
+BorrowBookUseCase494143919 -> JsonRequest913202606[label="execute() -> fromRawRequest()"];
+BorrowBookUseCase494143919 -> JsonResponse913202606[label="execute() -> ok()"];
+BorrowBookUseCase494143919 -> RentalRepository1801634832[label="rentalRepository
+[0..1]"];
+GetAggregatedBooksUseCase494143919 -> BookRepository1801634832[label="execute() -> searchAggregatedBooks()"];
+GetAggregatedBooksUseCase494143919 -> JsonResponse913202606[label="execute() -> ok()"];
+GetTestDtoUseCase494143919 -> JsonResponse913202606[label="execute() -> ok()"];
+LogInUseCase494143919 -> JsonRequest913202606[label="execute() -> fromRawRequest()"];
+LogInUseCase494143919 -> JsonResponse913202606[label="execute() -> ok()"];
+LogInUseCase494143919 -> PasswordEncoder1266427624[label="encoder
+[0..1]"];
+LogInUseCase494143919 -> UserRepository1801634832[label="userRepository
+[0..1]"];
+Main571951368 -> DatabaseConfig1266427624[label="main() -> init()"];
+Main571951368 -> UseCaseConfig1266427624[label="main() -> init()"];
+PathTreeNode1910611414 -> BorrowBookUseCase494143919[arrowhead=none];
+PathTreeNode1910611414 -> GetAggregatedBooksUseCase494143919[arrowhead=none];
+PathTreeNode1910611414 -> GetTestDtoUseCase494143919[arrowhead=none];
+PathTreeNode1910611414 -> LogInUseCase494143919[arrowhead=none];
+PathTreeNode1910611414 -> PostTestDtoUseCase494143919[arrowhead=none];
+PathTreeNode1910611414 -> SignUpUseCase494143919[arrowhead=none];
+PostTestDtoUseCase494143919 -> JsonRequest913202606[label="execute() -> fromRawRequest()"];
+PostTestDtoUseCase494143919 -> JsonResponse913202606[label="execute() -> ok()"];
+Request913202606 -> JsonRequest913202606[arrowhead=none, arrowtail=empty, dir=both];
+Response913202606 -> JsonResponse913202606[arrowhead=none, arrowtail=empty, dir=both];
+SignUpUseCase494143919 -> JsonRequest913202606[label="execute() -> fromRawRequest()"];
+SignUpUseCase494143919 -> JsonResponse913202606[label="execute() -> noContent()"];
+SignUpUseCase494143919 -> PasswordEncoder1266427624[label="encoder
+[0..1]"];
+SignUpUseCase494143919 -> UserRepository1801634832[label="userRepository
+[0..1]"];
+UseCaseController494143919 -> PathTreeNode1910611414[label="root
+[0..1]"];
+    
+}
+@enduml

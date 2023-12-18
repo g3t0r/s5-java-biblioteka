@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.biblioteka.client.controller.SignUpController">
+
+    <RadioButton layoutX="481.0" layoutY="210.0" mnemonicParsing="false" selected="true" text="Klient" />
+    <RadioButton layoutX="553.0" layoutY="210.0" mnemonicParsing="false" text="Pracownik" />
+    <RadioButton layoutX="658.0" layoutY="210.0" mnemonicParsing="false" text="Admin" />
+    <Label layoutX="480.0" layoutY="288.0" text="Email" />
+    <TextField fx:id="email" layoutX="479.0" layoutY="304.0" prefHeight="24.0" prefWidth="247.0" />
+    <PasswordField fx:id="password" layoutX="479.0" layoutY="363.0" prefHeight="24.0" prefWidth="247.0" />
+    <PasswordField fx:id="repeatPassword" layoutX="479.0" layoutY="413.0" prefHeight="24.0" prefWidth="247.0" />
+    <Label layoutX="479.0" layoutY="392.0" text="Powtórz hasło" />
+    <Label layoutX="480.0" layoutY="339.0" text="Hasło" />
+    <Button fx:id="submitButton" layoutX="546.0" layoutY="447.0" mnemonicParsing="false" text="Utwórz konto" />
+    <Label fx:id="errorLabel" layoutX="481.0" layoutY="253.0" />
+   <Label layoutX="551.0" layoutY="480.0" text="Mam już konto" onMouseClicked="#navigateToSignIn" />
+
+</AnchorPane>
