@@ -8,8 +8,8 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.392" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.biblioteka.client.controller.BookTableViewController">
    <children>
-      <TextField fx:id="searchInput" layoutX="356.0" layoutY="13.0" prefWidth="500.0" />
-      <Button fx:id="searchButton" layoutX="865.0" layoutY="13.0" mnemonicParsing="false" text="Szukaj" />
+      <TextField fx:id="searchInput" layoutX="356.0" layoutY="13.0" onAction="#onEnter" prefWidth="500.0" />
+      <Button fx:id="searchButton" layoutX="865.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#search" text="Szukaj" />
       <TableView fx:id="tableView" layoutY="53.0" prefHeight="746.0" prefWidth="1200.0">
         <columns>
           <TableColumn fx:id="titleColumn" editable="false" prefWidth="297.0" sortable="false" text="Tytuł" />
