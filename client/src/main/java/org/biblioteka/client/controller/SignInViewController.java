@@ -1,6 +1,7 @@
 package org.biblioteka.client.controller;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -14,6 +15,11 @@ import org.biblioteka.shared.model.UserDTO;
 public class SignInViewController {
 
     private final HttpService httpService = HttpService.getInstance();
+
+    @FXML
+    private void onEnter(ActionEvent event) {
+        submitForm();
+    }
 
 
     @FXML
@@ -31,7 +37,7 @@ public class SignInViewController {
     }
 
     @FXML
-    private void submitForm() throws Exception {
+    private void submitForm() {
         LogInDto dto = new LogInDto();
         dto.setEmail(email.getText());
         dto.setPassword(password.getText());

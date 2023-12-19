@@ -1,7 +1,7 @@
 package org.biblioteka.repository;
 
 import org.biblioteka.config.DatabaseConfig;
-import org.biblioteka.model.AggregatedBooks;
+import org.biblioteka.shared.model.AggregatedBooks;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

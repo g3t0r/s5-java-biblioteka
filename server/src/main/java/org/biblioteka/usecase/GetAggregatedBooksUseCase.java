@@ -1,7 +1,7 @@
 package org.biblioteka.usecase;
 
 import org.biblioteka.http.*;
-import org.biblioteka.model.AggregatedBooks;
+import org.biblioteka.shared.model.AggregatedBooks;
 import org.biblioteka.repository.BookRepository;
 import org.biblioteka.thread.RequestContext;
 
