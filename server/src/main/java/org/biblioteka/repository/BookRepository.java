@@ -22,7 +22,7 @@ public class BookRepository {
     private final static String SEARCH_AGGREGATED_BOOKS_QUERY =
             "SELECT k.tytul, k.autor, k.kategoria, SUM(e.czy_dostepna) AS available, COUNT(e.ID_egzemplarzu) " +
                     "AS total FROM ksiazka k JOIN egzemplarz e ON k.ID_ksiazki = e.ID_ksiazki " +
-                    "where k.tytul like concat(?, '%') " +
+                    "where k.tytul like concat(?, '%') or k.autor like concat(?, '%') " +
                     "GROUP BY k.tytul, " +
                     "k.autor, k.kategoria";
 
@@ -45,6 +45,7 @@ public class BookRepository {
                 PreparedStatement statement = conn.prepareStatement(SEARCH_AGGREGATED_BOOKS_QUERY)
         ) {
             statement.setString(1, text);
+            statement.setString(2, text);
             ResultSet resultSet = statement.executeQuery();
 
             return parseAggregatedBooks(resultSet);
