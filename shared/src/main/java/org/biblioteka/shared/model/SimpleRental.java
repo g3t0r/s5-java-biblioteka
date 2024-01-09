@@ -1,8 +1,9 @@
-package org.biblioteka.model;
+package org.biblioteka.shared.model;
 
 public class SimpleRental {
     private Integer copyId;
     private Integer userId;
+    private String userEmail;
     private String until;
     private String today;
     private String given;

@@ -7,9 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.text.Text;
 import javafx.util.converter.IntegerStringConverter;
 import org.biblioteka.client.service.HttpService;
 import org.biblioteka.shared.model.AggregatedBooks;
+import org.biblioteka.shared.model.RentalRequestDTO;
 
 public class LibrarianViewController {
     private final HttpService httpService = HttpService.getInstance();
@@ -18,6 +20,8 @@ public class LibrarianViewController {
 
     @FXML
     private TabPane tabs;
+
+    //  book list tab
 
     @FXML
     private Tab bookListTab;
@@ -39,6 +43,20 @@ public class LibrarianViewController {
     @FXML
     private TableColumn totalColumn;
 
+    // rental
+
+    @FXML
+    private TextField userEmail;
+
+    @FXML
+    private TextField copyId;
+
+    @FXML
+    private DatePicker untilDatePicker;
+
+    @FXML
+    private Text rentalErrorText;
+
     @FXML
     private void initialize() {
         tableView.setItems(booksList);
@@ -58,7 +76,7 @@ public class LibrarianViewController {
         totalColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
         tabs.getSelectionModel().selectedItemProperty().addListener((o, fromTab, toTab) -> {
-            if(toTab.getId().equals(bookListTab.getId())) {
+            if (toTab.getId().equals(bookListTab.getId())) {
                 search();
             }
         });
@@ -102,5 +120,18 @@ public class LibrarianViewController {
         booksList.clear();
         booksList.addAll(books);
         System.out.println(booksList);
+    }
+
+    @FXML
+    private void rentBook() {
+        rentalErrorText.setText("");
+        RentalRequestDTO rental = new RentalRequestDTO();
+        rental.setCopyId(Integer.parseInt(copyId.getText()));
+        rental.setUserEmail(userEmail.getText());
+        rental.setUntil(untilDatePicker.getValue().toString());
+        httpService.post("http://localhost:2020/rental", rental, Void.class, (nothing) -> {},
+                errorDto -> rentalErrorText.setText(errorDto.message)
+        );
+
     }
 }
