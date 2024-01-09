@@ -14,32 +14,6 @@ public class BookRepository {
 
     private final Connection conn;
 
-    private final static String MARK_BOOK_RENTED_QUERY =
-            "update egzemplarz e set e.czy_dostepna = false where e.ID_egzemplarzu = ?";
-
-
-    private final static String MARK_BOOK_RETURNED_QUERY =
-            "update egzemplarz e set e.czy_dostepna = true where e.ID_egzemplarzu = ?";
-
-
-    public void  markBookRented(Integer bookCopyId) {
-        try (PreparedStatement st = conn.prepareStatement(MARK_BOOK_RENTED_QUERY)) {
-            st.setInt(1, bookCopyId);
-            st.executeUpdate();
-        } catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void  markBookReturned(Integer bookCopyId) {
-        try (PreparedStatement st = conn.prepareStatement(MARK_BOOK_RETURNED_QUERY)) {
-            st.setInt(1, bookCopyId);
-            st.executeUpdate();
-        } catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private final static String GET_AGGREGATED_BOOKS_QUERY =
             "SELECT k.tytul, k.autor, k.kategoria, SUM(e.czy_dostepna) AS available, COUNT(e.ID_egzemplarzu) " +
                     "AS total FROM ksiazka k JOIN egzemplarz e ON k.ID_ksiazki = e.ID_ksiazki GROUP BY k.tytul, " +
