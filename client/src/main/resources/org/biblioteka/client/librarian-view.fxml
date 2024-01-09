@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.392" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.biblioteka.client.controller.LibrarianViewController">
+   <children>
+      <TabPane fx:id="tabs" layoutX="-3.0" layoutY="2.0" prefHeight="798.0" prefWidth="1201.0" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="1000.0">
+        <tabs>
+          <Tab id="bookListTab" text="Lista książek">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="searchInput" layoutX="348.0" layoutY="18.0" onAction="#onEnter" prefWidth="500.0" />
+                        <Button fx:id="searchButton" layoutX="858.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#search" text="Szukaj" />
+                        <TableView fx:id="tableView" layoutY="56.0" prefHeight="690.0" prefWidth="1200.0">
+                           <columns>
+                              <TableColumn fx:id="titleColumn" editable="false" prefWidth="297.0" sortable="false" text="Tytuł" />
+                              <TableColumn fx:id="authorColumn" minWidth="0.0" prefWidth="174.66665649414062" text="Autor" />
+                              <TableColumn fx:id="genreColumn" prefWidth="254.33331298828125" text="Gatunek" />
+                              <TableColumn fx:id="availableColumn" prefWidth="203.6666259765625" text="Dostępne egzemplarze" />
+                              <TableColumn fx:id="totalColumn" prefWidth="267.0" text="Łączna ilość egzemplarzy" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab id="rentalTab" text="Wypożyczenie">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="406.0" layoutY="362.0" prefHeight="26.0" prefWidth="392.0" />
+                        <Button layoutX="562.0" layoutY="393.0" mnemonicParsing="false" text="Wypożycz" />
+                        <Label layoutX="412.0" layoutY="343.0" text="Id egzemplarza" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab id="returnTab" text="Zwrot">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="385.0" layoutY="371.0" prefHeight="26.0" prefWidth="392.0" />
+                        <Button layoutX="538.0" layoutY="401.0" mnemonicParsing="false" text="Zwróć" />
+                        <Label layoutX="392.0" layoutY="351.0" text="Id egzemplarza" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

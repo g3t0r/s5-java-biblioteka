@@ -44,8 +44,10 @@ public class SignInViewController {
 
         httpService.post("http://localhost:2020/login", dto, UserDTO.class,
                 (userDto) -> {
-                    SceneService.getInstance().addPane(RegisteredView.BOOK_TABLE);
-                    SceneService.getInstance().activate(RegisteredView.BOOK_TABLE);
+//                    SceneService.getInstance().addPane(RegisteredView.BOOK_TABLE);
+//                    SceneService.getInstance().activate(RegisteredView.BOOK_TABLE);
+                    SceneService.getInstance().addPane(RegisteredView.LIBRARIAN_VIEW);
+                    SceneService.getInstance().activate(RegisteredView.LIBRARIAN_VIEW);
                 },
                 (errorDto) -> Platform.runLater(() -> errorLabel.setText(errorDto.message)));
     }
