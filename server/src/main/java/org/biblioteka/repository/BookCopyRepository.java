@@ -22,25 +22,27 @@ public class BookCopyRepository {
     }
 
     public static BookCopyRepository getInstance() {
-       if(instance == null) {
-           instance = new BookCopyRepository(DatabaseConfig.getConnection());
-       }
-       return instance;
+        if (instance == null) {
+            instance = new BookCopyRepository(DatabaseConfig.getConnection());
+        }
+        return instance;
     }
 
     private final Connection conn;
 
     public boolean isAvailable(Integer copyId) {
-       try (PreparedStatement st = conn.prepareStatement(IS_COPY_AVAILABLE_QUERY)) {
-           st.setInt(1, copyId);
+        try (PreparedStatement st = conn.prepareStatement(IS_COPY_AVAILABLE_QUERY)) {
+            st.setInt(1, copyId);
 
-           ResultSet r = st.executeQuery();
-           r.next();
-           return r.getBoolean(1);
+            ResultSet r = st.executeQuery();
+            if (r.next()) {
+                return r.getBoolean(1);
+            }
+            return false;
 
-       } catch (SQLException e) {
-           throw new RuntimeException(e);
-       }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void updateAvailability(Integer copyId, boolean available) {
