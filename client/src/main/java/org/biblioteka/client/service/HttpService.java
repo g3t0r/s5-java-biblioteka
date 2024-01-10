@@ -54,9 +54,9 @@ public class HttpService {
 
         executorService.submit(() -> {
 
-            String jsonBody = gson.toJson(body);
             Request request = new Request.Builder()
-                    .post(RequestBody.create(jsonBody, MediaType.get("application/json")))
+                    .post(body == null ? RequestBody.create(null, "") :
+                            RequestBody.create(gson.toJson(body), MediaType.get("application/json")))
                     .url(url)
                     .build();
 

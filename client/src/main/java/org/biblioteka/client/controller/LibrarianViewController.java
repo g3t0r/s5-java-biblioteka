@@ -60,6 +60,17 @@ public class LibrarianViewController {
     @FXML
     private Text rentalSuccessText;
 
+    // return copy
+
+    @FXML
+    private TextField returnCopyId;
+
+    @FXML
+    private Text returnCopyErrorText;
+
+    @FXML
+    private Text returnCopySuccessText;
+
     @FXML
     private void initialize() {
         tableView.setItems(booksList);
@@ -138,5 +149,15 @@ public class LibrarianViewController {
                 errorDto -> rentalErrorText.setText(errorDto.message)
         );
 
+    }
+
+    @FXML
+    private void returnTheCopy() {
+        returnCopySuccessText.setText("");
+        returnCopyErrorText.setText("");
+        httpService.post("http://localhost:2020/copy/" + returnCopyId.getText() + "/return" , null, Void.class,
+                (nothing) -> returnCopySuccessText.setText("OK"),
+                errorDto -> returnCopyErrorText.setText(errorDto.message)
+        );
     }
 }
