@@ -6,7 +6,23 @@ import org.biblioteka.model.Rental;
 import java.sql.*;
 
 public class RentalRepository {
+
+    private final static String UPDATE_RETURN_DATE_QUERY =
+            "update wypozyczenie set kiedy_zwrocono = NOW() where nr_wypozyczenia = ( " +
+                   "select tmp.nr_wypozyczenia from ( select w2.nr_wypozyczenia from wypozyczenie w2 " +
+                    "where w2.ID_egzemplarzu = ? order by w2.od_kiedy desc limit 1" +
+                    " ) as tmp)";
+
     private final Connection conn = DatabaseConfig.getConnection();
+
+    public void updateReturnDate(Integer copyId) {
+        try (PreparedStatement st = conn.prepareStatement(UPDATE_RETURN_DATE_QUERY)) {
+            st.setInt(1, copyId);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public Rental add(Rental rental) {
 

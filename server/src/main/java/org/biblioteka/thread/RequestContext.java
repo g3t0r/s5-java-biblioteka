@@ -58,4 +58,8 @@ public class RequestContext {
     public String getProtocol() {
         return request.getProtocol();
     }
+
+    public void setPathParams(List<String> pathParams) {
+        this.pathParams = pathParams;
+    }
 }

@@ -41,10 +41,12 @@ public class HandleConnectionThread implements Runnable {
                         .getInstance()
                         .getUseCase(rawRequest.getUri().getPath(), rawRequest.getMethod(), pathParams);
 
+
                 if(useCase == null) {
                     throw NotFoundException.build(rawRequest.getUri().getPath(), rawRequest.getMethod());
                 }
 
+                context.setPathParams(pathParams);
                 Response<?> response = useCase.execute(context);
                 PrintWriter printWriter = new PrintWriter(new BufferedOutputStream(clientSocket.getOutputStream()));
                 new ResponseWriter(printWriter).writeResponse(response);
