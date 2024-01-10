@@ -58,6 +58,9 @@ public class LibrarianViewController {
     private Text rentalErrorText;
 
     @FXML
+    private Text rentalSuccessText;
+
+    @FXML
     private void initialize() {
         tableView.setItems(booksList);
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -125,11 +128,13 @@ public class LibrarianViewController {
     @FXML
     private void rentBook() {
         rentalErrorText.setText("");
+        rentalSuccessText.setText("");
         RentalRequestDTO rental = new RentalRequestDTO();
         rental.setCopyId(Integer.parseInt(copyId.getText()));
         rental.setUserEmail(userEmail.getText());
         rental.setUntil(untilDatePicker.getValue().toString());
-        httpService.post("http://localhost:2020/rental", rental, Void.class, (nothing) -> {},
+        httpService.post("http://localhost:2020/rental", rental, Void.class,
+                (nothing) -> rentalSuccessText.setText("OK"),
                 errorDto -> rentalErrorText.setText(errorDto.message)
         );
 

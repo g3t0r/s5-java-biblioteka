@@ -46,6 +46,7 @@
                         <DatePicker fx:id="untilDatePicker" layoutX="410.0" layoutY="260.0" />
                         <Label layoutX="412.0" layoutY="241.0" text="Wypożycz do" />
                         <Text fx:id="rentalErrorText" fill="RED" layoutX="411.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="rentalSuccessText" fill="LIME" layoutX="421.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </children>
                   </AnchorPane>
             </content>
