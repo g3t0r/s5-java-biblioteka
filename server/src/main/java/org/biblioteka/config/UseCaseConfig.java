@@ -14,5 +14,6 @@ public class UseCaseConfig {
         useCaseController.registerUseCase("/login", HttpMethod.POST, new LogInUseCase());
         useCaseController.registerUseCase("/rental", HttpMethod.POST, new BorrowBookUseCase());
         useCaseController.registerUseCase("/copy/*/return", HttpMethod.POST, new ReturnCopyUseCase());
+        useCaseController.registerUseCase("/copy", HttpMethod.GET, new GetRentedCopiesForUser());
     }
 }
