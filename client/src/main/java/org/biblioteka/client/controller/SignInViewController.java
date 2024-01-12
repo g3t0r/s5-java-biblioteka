@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.biblioteka.client.config.CurrentUserContext;
 import org.biblioteka.client.config.RegisteredView;
 import org.biblioteka.client.service.HttpService;
 import org.biblioteka.client.service.SceneService;
@@ -44,10 +45,11 @@ public class SignInViewController {
 
         httpService.post("http://localhost:2020/login", dto, UserDTO.class,
                 (userDto) -> {
+                    CurrentUserContext.setCurrentUser(userDto);
 //                    SceneService.getInstance().addPane(RegisteredView.BOOK_TABLE);
 //                    SceneService.getInstance().activate(RegisteredView.BOOK_TABLE);
-                    SceneService.getInstance().addPane(RegisteredView.LIBRARIAN_VIEW);
-                    SceneService.getInstance().activate(RegisteredView.LIBRARIAN_VIEW);
+                    SceneService.getInstance().addPane(RegisteredView.CUSTOMER_VIEW);
+                    SceneService.getInstance().activate(RegisteredView.CUSTOMER_VIEW);
                 },
                 (errorDto) -> Platform.runLater(() -> errorLabel.setText(errorDto.message)));
     }

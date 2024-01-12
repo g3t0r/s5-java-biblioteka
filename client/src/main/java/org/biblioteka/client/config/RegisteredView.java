@@ -5,6 +5,7 @@ public enum RegisteredView {
     SIGN_UP("signup-view.fxml"),
     LIBRARIAN_VIEW("librarian-view.fxml"),
     BOOK_TABLE("book-table-view.fxml"),
+    CUSTOMER_VIEW("customer-view.fxml"),
     INCORRECT("incorrect-view.fxml");
 
     RegisteredView(String fxmlFile) {
