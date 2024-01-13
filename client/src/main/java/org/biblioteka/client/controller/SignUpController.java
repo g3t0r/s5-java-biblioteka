@@ -81,14 +81,8 @@ public class SignUpController {
 
         httpService.post("http://localhost:2020/signup", dto, UserDTO.class,
                 (userDto) -> {
-                    CurrentUserContext.setCurrentUser(userDto);
-                    if(userDto.getRole().equals(Role.CUSTOMER.name())) {
-                        SceneService.getInstance().addPane(RegisteredView.CUSTOMER_VIEW);
-                        SceneService.getInstance().activate(RegisteredView.CUSTOMER_VIEW);
-                    } else {
-                        SceneService.getInstance().addPane(RegisteredView.LIBRARIAN_VIEW);
-                        SceneService.getInstance().activate(RegisteredView.LIBRARIAN_VIEW);
-                    }
+                    SceneService.getInstance().addPane(RegisteredView.SIGN_IN);
+                    SceneService.getInstance().activate(RegisteredView.SIGN_IN);
                 },
                 (errorDto) -> Platform.runLater(() -> errorLabel.setText(errorDto.message)));
     }
