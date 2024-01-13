@@ -7,6 +7,8 @@ public class SignUpDTO {
     private String email;
     private String password;
 
+    private String address = "Warszawska 1, 00-001 Warszawa";
+
     public String getRole() {
         return role;
     }
@@ -29,6 +31,10 @@ public class SignUpDTO {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public String getEmail() {

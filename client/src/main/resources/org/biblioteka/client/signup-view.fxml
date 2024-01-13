@@ -34,8 +34,7 @@
     <PasswordField fx:id="repeatPassword" layoutX="479.0" layoutY="470.0" prefHeight="24.0" prefWidth="247.0" />
 
     <Button fx:id="submitButton" layoutX="546.0" layoutY="510.0" mnemonicParsing="false" text="Utwórz konto" onMouseClicked="#submitForm" />
-
-    <Label fx:id="errorLabel" layoutX="481.0" layoutY="510.0" />
     <Label layoutX="551.0" layoutY="550.0" onMouseClicked="#navigateToSignIn" text="Mam już konto" />
+    <Label fx:id="errorLabel" layoutX="481.0" layoutY="570.0" />
 
 </AnchorPane>
