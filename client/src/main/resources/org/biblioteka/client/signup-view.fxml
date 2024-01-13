@@ -10,20 +10,32 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.392" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.biblioteka.client.controller.SignUpController">
 
-    <RadioButton layoutX="481.0" layoutY="210.0" mnemonicParsing="false" selected="true" text="Klient">
-      <toggleGroup>
-         <ToggleGroup fx:id="group" />
-      </toggleGroup></RadioButton>
-    <RadioButton layoutX="553.0" layoutY="210.0" mnemonicParsing="false" text="Pracownik" toggleGroup="$group" />
-    <RadioButton layoutX="658.0" layoutY="210.0" mnemonicParsing="false" text="Admin" toggleGroup="$group" />
-    <Label layoutX="480.0" layoutY="288.0" text="Email" />
-    <TextField fx:id="email" layoutX="479.0" layoutY="304.0" prefHeight="24.0" prefWidth="247.0" />
-    <PasswordField fx:id="password" layoutX="479.0" layoutY="363.0" prefHeight="24.0" prefWidth="247.0" />
-    <PasswordField fx:id="repeatPassword" layoutX="479.0" layoutY="413.0" prefHeight="24.0" prefWidth="247.0" />
-    <Label layoutX="479.0" layoutY="392.0" text="Powtórz hasło" />
-    <Label layoutX="480.0" layoutY="339.0" text="Hasło" />
-    <Button fx:id="submitButton" layoutX="546.0" layoutY="447.0" mnemonicParsing="false" text="Utwórz konto" />
-    <Label fx:id="errorLabel" layoutX="481.0" layoutY="253.0" />
-   <Label layoutX="551.0" layoutY="480.0" onMouseClicked="#navigateToSignIn" text="Mam już konto" />
+    <RadioButton fx:id="clientRadioButton" layoutX="481.0" layoutY="210.0" mnemonicParsing="false" selected="true" text="Klient" toggleGroup="$group" >
+        <toggleGroup>
+            <ToggleGroup fx:id="group" />
+        </toggleGroup>
+    </RadioButton>
+    <RadioButton fx:id="workerRadioButton" layoutX="553.0" layoutY="210.0" mnemonicParsing="false" text="Pracownik" toggleGroup="$group" />
+    <RadioButton fx:id="adminRadioButton" layoutX="658.0" layoutY="210.0" mnemonicParsing="false" text="Admin" toggleGroup="$group" />
+
+    <Label layoutX="480.0" layoutY="250.0" text="Imię" />
+    <TextField fx:id="name" layoutX="479.0" layoutY="270.0" prefHeight="24.0" prefWidth="247.0" />
+
+    <Label layoutX="480.0" layoutY="300.0" text="Nazwisko" />
+    <TextField fx:id="surname" layoutX="479.0" layoutY="320.0" prefHeight="24.0" prefWidth="247.0" />
+
+    <Label layoutX="480.0" layoutY="350.0" text="Email" />
+    <TextField fx:id="email" layoutX="479.0" layoutY="370.0" prefHeight="24.0" prefWidth="247.0" />
+
+    <Label layoutX="480.0" layoutY="400.0" text="Hasło" />
+    <PasswordField fx:id="password" layoutX="479.0" layoutY="420.0" prefHeight="24.0" prefWidth="247.0" />
+
+    <Label layoutX="479.0" layoutY="450.0" text="Powtórz hasło" />
+    <PasswordField fx:id="repeatPassword" layoutX="479.0" layoutY="470.0" prefHeight="24.0" prefWidth="247.0" />
+
+    <Button fx:id="submitButton" layoutX="546.0" layoutY="510.0" mnemonicParsing="false" text="Utwórz konto" />
+
+    <Label fx:id="errorLabel" layoutX="481.0" layoutY="510.0" />
+    <Label layoutX="551.0" layoutY="550.0" onMouseClicked="#navigateToSignIn" text="Mam już konto" />
 
 </AnchorPane>
