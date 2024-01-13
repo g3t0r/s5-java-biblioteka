@@ -5,7 +5,7 @@ import org.biblioteka.exceptions.ValidationException;
 import org.biblioteka.http.JsonRequest;
 import org.biblioteka.http.JsonResponse;
 import org.biblioteka.http.Response;
-import org.biblioteka.model.Role;
+import org.biblioteka.shared.model.Role;
 import org.biblioteka.model.SignUpDto;
 import org.biblioteka.model.User;
 import org.biblioteka.repository.UserRepository;

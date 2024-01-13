@@ -1,5 +1,7 @@
 package org.biblioteka.model;
 
+import org.biblioteka.shared.model.Role;
+
 public class User {
     private Integer id;
     private String name;

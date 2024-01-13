@@ -1,7 +1,7 @@
 package org.biblioteka.repository;
 
 import org.biblioteka.config.DatabaseConfig;
-import org.biblioteka.model.Role;
+import org.biblioteka.shared.model.Role;
 import org.biblioteka.model.User;
 
 import java.sql.*;

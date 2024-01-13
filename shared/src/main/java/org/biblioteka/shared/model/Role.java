@@ -1,4 +1,4 @@
-package org.biblioteka.model;
+package org.biblioteka.shared.model;
 
 public enum Role {
     EMPLOYEE("PRACOWNIK"),

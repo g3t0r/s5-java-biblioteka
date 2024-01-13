@@ -11,6 +11,7 @@ import org.biblioteka.client.config.RegisteredView;
 import org.biblioteka.client.service.HttpService;
 import org.biblioteka.client.service.SceneService;
 import org.biblioteka.shared.model.LogInDto;
+import org.biblioteka.shared.model.Role;
 import org.biblioteka.shared.model.UserDTO;
 
 public class SignInViewController {
@@ -46,10 +47,13 @@ public class SignInViewController {
         httpService.post("http://localhost:2020/login", dto, UserDTO.class,
                 (userDto) -> {
                     CurrentUserContext.setCurrentUser(userDto);
-//                    SceneService.getInstance().addPane(RegisteredView.BOOK_TABLE);
-//                    SceneService.getInstance().activate(RegisteredView.BOOK_TABLE);
-                    SceneService.getInstance().addPane(RegisteredView.CUSTOMER_VIEW);
-                    SceneService.getInstance().activate(RegisteredView.CUSTOMER_VIEW);
+                    if(userDto.getRole().equals(Role.CUSTOMER.name())) {
+                        SceneService.getInstance().addPane(RegisteredView.CUSTOMER_VIEW);
+                        SceneService.getInstance().activate(RegisteredView.CUSTOMER_VIEW);
+                    } else {
+                        SceneService.getInstance().addPane(RegisteredView.LIBRARIAN_VIEW);
+                        SceneService.getInstance().activate(RegisteredView.LIBRARIAN_VIEW);
+                    }
                 },
                 (errorDto) -> Platform.runLater(() -> errorLabel.setText(errorDto.message)));
     }
