@@ -17,6 +17,8 @@ import org.biblioteka.shared.model.RentalRequestDTO;
 import org.biblioteka.client.config.RegisteredView;
 import org.biblioteka.client.service.SceneService;
 
+import java.time.LocalDate;
+
 public class LibrarianViewController {
     private final HttpService httpService = HttpService.getInstance();
 
@@ -100,6 +102,9 @@ public class LibrarianViewController {
         });
 
         getAllBooks();
+
+        LocalDate oneMonthLater = LocalDate.now().plusMonths(1);
+        untilDatePicker.setValue(oneMonthLater);
     }
 
     @FXML
@@ -153,6 +158,12 @@ public class LibrarianViewController {
         rental.setCopyId(Integer.parseInt(copyId.getText()));
         rental.setUserEmail(userEmail.getText());
         rental.setUntil(untilDatePicker.getValue().toString());
+
+        if(!RentalRequestDTO.isValidDate(untilDatePicker.getValue())) {
+            rentalErrorText.setText("Okres wypożyczenia błedny");
+            return;
+        }
+
         httpService.post("http://localhost:2020/rental", rental, Void.class,
                 (nothing) -> rentalSuccessText.setText("OK"),
                 errorDto -> rentalErrorText.setText(errorDto.message)

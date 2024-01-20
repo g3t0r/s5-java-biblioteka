@@ -1,5 +1,7 @@
 package org.biblioteka.shared.model;
 
+import java.time.LocalDate;
+
 public class RentalRequestDTO {
     private String userEmail;
     private Integer copyId;
@@ -27,5 +29,9 @@ public class RentalRequestDTO {
 
     public void setUntil(String until) {
         this.until = until;
+    }
+
+    static public boolean isValidDate(LocalDate date) {
+        return date != null && date.isAfter(LocalDate.now());
     }
 }
