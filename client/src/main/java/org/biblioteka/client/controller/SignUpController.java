@@ -66,6 +66,26 @@ public class SignUpController {
     }
 
     private boolean validateForm() {
+        if(name.getText().isBlank()) {
+            errorLabel.setText("Imię nie może być puste");
+            return false;
+        }
+
+        if(surname.getText().isBlank()) {
+            errorLabel.setText("Nazwisko nie może być puste");
+            return false;
+        }
+
+        if(email.getText().isBlank()) {
+            errorLabel.setText("Email nie może być pusty");
+            return false;
+        }
+
+        if(password.getText().isBlank()) {
+            errorLabel.setText("Hasło nie może być puste");
+            return false;
+        }
+
         if(!name.getText().matches("^[a-zA-Z]+$")) {
             errorLabel.setText("Imię może zawierać tylko litery");
             return false;
