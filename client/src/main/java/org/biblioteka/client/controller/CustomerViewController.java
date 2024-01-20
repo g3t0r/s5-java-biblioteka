@@ -9,7 +9,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
 import org.biblioteka.client.config.CurrentUserContext;
+import org.biblioteka.client.config.RegisteredView;
 import org.biblioteka.client.service.HttpService;
+import org.biblioteka.client.service.SceneService;
 import org.biblioteka.shared.model.RentedCopy;
 
 import java.util.Arrays;
@@ -38,6 +40,11 @@ public class CustomerViewController {
     @FXML
     private TableColumn<RentedCopy, String> untilColumn;
 
+    @FXML
+    private void logOut() {
+        CurrentUserContext.setCurrentUser(null);
+        SceneService.getInstance().activate(RegisteredView.SIGN_IN);
+    }
 
     @FXML
     private void initialize() {
