@@ -7,11 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.util.converter.IntegerStringConverter;
+import org.biblioteka.client.config.CurrentUserContext;
 import org.biblioteka.client.service.HttpService;
 import org.biblioteka.shared.model.AggregatedBooks;
 import org.biblioteka.shared.model.RentalRequestDTO;
+import org.biblioteka.client.config.RegisteredView;
+import org.biblioteka.client.service.SceneService;
 
 public class LibrarianViewController {
     private final HttpService httpService = HttpService.getInstance();
@@ -98,6 +102,11 @@ public class LibrarianViewController {
         getAllBooks();
     }
 
+    @FXML
+    private void logOut() {
+        CurrentUserContext.setCurrentUser(null);
+        SceneService.getInstance().activate(RegisteredView.SIGN_IN);
+    }
 
     @FXML
     private void onEnter(ActionEvent event) {

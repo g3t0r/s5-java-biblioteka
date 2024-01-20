@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.control.Button?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.392" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.biblioteka.client.controller.CustomerViewController">
    <children>
@@ -30,5 +30,7 @@
           </Tab>
         </tabs>
       </TabPane>
+
+       <Button layoutX="1100.0" layoutY="3" mnemonicParsing="false" text="Wyloguj się" onMouseClicked="#logOut"/>
    </children>
 </AnchorPane>
