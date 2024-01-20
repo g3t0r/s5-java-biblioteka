@@ -65,10 +65,57 @@ public class SignUpController {
         SceneService.getInstance().activate(RegisteredView.SIGN_IN);
     }
 
+    private boolean validateForm() {
+        if(name.getText().isBlank()) {
+            errorLabel.setText("Imię nie może być puste");
+            return false;
+        }
+
+        if(surname.getText().isBlank()) {
+            errorLabel.setText("Nazwisko nie może być puste");
+            return false;
+        }
+
+        if(email.getText().isBlank()) {
+            errorLabel.setText("Email nie może być pusty");
+            return false;
+        }
+
+        if(password.getText().isBlank()) {
+            errorLabel.setText("Hasło nie może być puste");
+            return false;
+        }
+
+        if(!name.getText().matches("^[a-zA-Z]+$")) {
+            errorLabel.setText("Imię może zawierać tylko litery");
+            return false;
+        }
+        if(!surname.getText().matches("^[a-zA-Z]+$")) {
+            errorLabel.setText("Nazwisko może zawierać tylko litery");
+            return false;
+        }
+
+        if(!email.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            errorLabel.setText("Niepoprawny adres email");
+            return false;
+        }
+
+        if(password.getText().length() < 8) {
+            errorLabel.setText("Hasło musi mieć co najmniej 8 znaków");
+            return false;
+        }
+
+        if(!password.getText().equals(repeatPassword.getText())) {
+            errorLabel.setText("Hasła muszą pasować ze sobą");
+            return false;
+        }
+
+        return true;
+    }
+
     @FXML
     private void submitForm() {
-        if(!password.getText().equals(repeatPassword.getText())) {
-            errorLabel.setText("Passwords do not match");
+        if(!validateForm()) {
             return;
         }
 
