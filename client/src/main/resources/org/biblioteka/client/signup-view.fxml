@@ -10,13 +10,13 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.392" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.biblioteka.client.controller.SignUpController">
 
-    <RadioButton fx:id="clientRadioButton" layoutX="481.0" layoutY="210.0" mnemonicParsing="false" selected="true" text="Klient" toggleGroup="$group" >
+    <RadioButton fx:id="clientRadioButton" layoutX="481.0" layoutY="210.0" mnemonicParsing="false" selected="true" text="Klient" toggleGroup="$group">
         <toggleGroup>
             <ToggleGroup fx:id="group" />
         </toggleGroup>
     </RadioButton>
     <RadioButton fx:id="workerRadioButton" layoutX="553.0" layoutY="210.0" mnemonicParsing="false" text="Pracownik" toggleGroup="$group" />
-    <RadioButton fx:id="adminRadioButton" layoutX="658.0" layoutY="210.0" mnemonicParsing="false" text="Admin" toggleGroup="$group" />
+    <RadioButton fx:id="adminRadioButton" disable="true" layoutX="658.0" layoutY="210.0" mnemonicParsing="false" text="Admin" toggleGroup="$group" visible="false" />
 
     <Label layoutX="480.0" layoutY="250.0" text="Imię" />
     <TextField fx:id="name" layoutX="479.0" layoutY="270.0" prefHeight="24.0" prefWidth="247.0" />
@@ -33,7 +33,7 @@
     <Label layoutX="479.0" layoutY="450.0" text="Powtórz hasło" />
     <PasswordField fx:id="repeatPassword" layoutX="479.0" layoutY="470.0" prefHeight="24.0" prefWidth="247.0" />
 
-    <Button fx:id="submitButton" layoutX="546.0" layoutY="510.0" mnemonicParsing="false" text="Utwórz konto" onMouseClicked="#submitForm" />
+    <Button fx:id="submitButton" layoutX="546.0" layoutY="510.0" mnemonicParsing="false" onMouseClicked="#submitForm" text="Utwórz konto" />
     <Label layoutX="551.0" layoutY="550.0" onMouseClicked="#navigateToSignIn" text="Mam już konto" />
     <Label fx:id="errorLabel" layoutX="481.0" layoutY="570.0" />
 
