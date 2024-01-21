@@ -7,15 +7,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.util.converter.IntegerStringConverter;
 import org.biblioteka.client.config.CurrentUserContext;
+import org.biblioteka.client.config.RegisteredView;
 import org.biblioteka.client.service.HttpService;
+import org.biblioteka.client.service.SceneService;
 import org.biblioteka.shared.model.AggregatedBooks;
 import org.biblioteka.shared.model.RentalRequestDTO;
-import org.biblioteka.client.config.RegisteredView;
-import org.biblioteka.client.service.SceneService;
 
 import java.time.LocalDate;
 
@@ -159,7 +158,7 @@ public class LibrarianViewController {
         rental.setUserEmail(userEmail.getText());
         rental.setUntil(untilDatePicker.getValue().toString());
 
-        if(!RentalRequestDTO.isValidDate(untilDatePicker.getValue())) {
+        if (!RentalRequestDTO.isValidDate(untilDatePicker.getValue())) {
             rentalErrorText.setText("Okres wypożyczenia błedny");
             return;
         }
@@ -175,7 +174,7 @@ public class LibrarianViewController {
     private void returnTheCopy() {
         returnCopySuccessText.setText("");
         returnCopyErrorText.setText("");
-        httpService.post("http://localhost:2020/copy/" + returnCopyId.getText() + "/return" , null, Void.class,
+        httpService.post("http://localhost:2020/copy/" + returnCopyId.getText() + "/return", null, Void.class,
                 (nothing) -> returnCopySuccessText.setText("OK"),
                 errorDto -> returnCopyErrorText.setText(errorDto.message)
         );

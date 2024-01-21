@@ -10,20 +10,25 @@ import org.biblioteka.thread.RequestContext;
 
 import java.util.List;
 
-public class GetUsersByRoleUseCase implements UseCase<JsonRequest<Void>, JsonResponse<List<UserDTO>>> {
+public class GetUsersUseCase implements UseCase<JsonRequest<Void>, JsonResponse<List<UserDTO>>> {
     private final UserRepository userRepository = UserRepository.getInstance();
 
     @Override
     public JsonResponse<List<UserDTO>> execute(RequestContext requestContext) {
         String query = requestContext.getQueryParams().get("query");
-        Role role = Role.fromString(requestContext.getQueryParams().get("role"));
+        String stringRole = requestContext.getQueryParams().get("role");
+        Role role = stringRole == null ? null : Role.fromString(stringRole);
 
         List<User> users;
 
-        if (query == null) {
+        if(query != null && role != null) {
+            users = userRepository.searchUserByRole(role, query);
+        } else if(query != null) {
+            users = userRepository.searchUsers(query);
+        } else if(role != null) {
             users = userRepository.findUserByRole(role);
         } else {
-            users = userRepository.searchUserByRole(role, query);
+            users = userRepository.getAllUsers();
         }
 
         return JsonResponse.ok(requestContext.getProtocol(),

@@ -1,8 +1,8 @@
 package org.biblioteka.repository;
 
 import org.biblioteka.config.DatabaseConfig;
-import org.biblioteka.shared.model.Role;
 import org.biblioteka.model.User;
+import org.biblioteka.shared.model.Role;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,20 +10,75 @@ import java.util.List;
 
 public class UserRepository {
 
+    private static final String GET_ALL_USERS = "select ID_uzytkownika, imie, nazwisko, adres, email, rola from uzytkownik";
+
     private static final String FIND_USER_BY_ROLE =
             "select ID_uzytkownika, imie, nazwisko, adres, email, rola from uzytkownik where rola=?";
 
-    private static final String SEARCH_USER_BY_ROLE_AND_TEXT= """
-                select ID_uzytkownika, imie, nazwisko, adres, email, rola from uzytkownik
-                where rola=? and (
-                    imie like ? or
-                    nazwisko like ? or
-                    adres like ? or
-                    email like ?
-                );
-                """;
+    private static final String SEARCH_USER_BY_ROLE_AND_TEXT = """
+            select ID_uzytkownika, imie, nazwisko, adres, email, rola from uzytkownik
+            where rola=? and (
+                imie like ? or
+                nazwisko like ? or
+                adres like ? or
+                email like ?
+            );
+            """;
+
+    private static final String SEARCH_USER = """
+            select ID_uzytkownika, imie, nazwisko, adres, email, rola from uzytkownik
+            where imie like ? or
+                nazwisko like ? or
+                adres like ? or
+                email like ?
+            """;
 
     private final Connection conn = DatabaseConfig.getConnection();
+
+    public List<User> getAllUsers() {
+        try (PreparedStatement st = conn.prepareStatement(GET_ALL_USERS)) {
+            ResultSet rs = st.executeQuery();
+            List<User> users = new ArrayList<>();
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("ID_uzytkownika"));
+                user.setName(rs.getString("imie"));
+                user.setSurname(rs.getString("nazwisko"));
+                user.setAddress(rs.getString("adres"));
+                user.setEmail(rs.getString("email"));
+                user.setRole(Role.fromString(rs.getString("rola")));
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<User> searchUsers(String search) {
+        try (PreparedStatement st = conn.prepareStatement(SEARCH_USER)) {
+            String preparedSearch = "%" + search + "%";
+            st.setString(1, preparedSearch);
+            st.setString(2, preparedSearch);
+            st.setString(3, preparedSearch);
+            st.setString(4, preparedSearch);
+            ResultSet rs = st.executeQuery();
+            List<User> users = new ArrayList<>();
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("ID_uzytkownika"));
+                user.setName(rs.getString("imie"));
+                user.setSurname(rs.getString("nazwisko"));
+                user.setAddress(rs.getString("adres"));
+                user.setEmail(rs.getString("email"));
+                user.setRole(Role.fromString(rs.getString("rola")));
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public List<User> findUserByRole(Role role) {
         try (PreparedStatement st = conn.prepareStatement(FIND_USER_BY_ROLE)) {
@@ -48,8 +103,12 @@ public class UserRepository {
 
     public List<User> searchUserByRole(Role role, String searchQuery) {
         try (PreparedStatement st = conn.prepareStatement(SEARCH_USER_BY_ROLE_AND_TEXT)) {
+            String preparedSearch = "%" + searchQuery + "%";
             st.setString(1, role.toString());
-            st.setString(2, searchQuery);
+            st.setString(2, preparedSearch);
+            st.setString(3, preparedSearch);
+            st.setString(4, preparedSearch);
+            st.setString(5, preparedSearch);
             ResultSet rs = st.executeQuery();
             List<User> users = new ArrayList<>();
             while (rs.next()) {

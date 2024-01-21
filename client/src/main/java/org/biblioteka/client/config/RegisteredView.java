@@ -4,6 +4,7 @@ public enum RegisteredView {
     SIGN_IN("signin-view.fxml"),
     SIGN_UP("signup-view.fxml"),
     LIBRARIAN_VIEW("librarian-view.fxml"),
+    ADMIN_VIEW("admin-view.fxml"),
     BOOK_TABLE("book-table-view.fxml"),
     CUSTOMER_VIEW("customer-view.fxml"),
     INCORRECT("incorrect-view.fxml");
