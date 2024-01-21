@@ -6,28 +6,48 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.392" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.biblioteka.client.controller.CustomerViewController">
    <children>
       <TabPane prefHeight="800.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Wypożyczone książki">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="1200.0">
-                     <children>
-                        <TableView fx:id="tableView" prefHeight="769.0" prefWidth="1200.0">
-                          <columns>
-                            <TableColumn fx:id="copyIdColumn" prefWidth="177.99996948242188" text="nr egzemplarza" />
-                            <TableColumn fx:id="titleColumn" minWidth="0.0" prefWidth="287.0" text="Tytuł" />
-                              <TableColumn fx:id="authorColumn" prefWidth="254.0" text="Autor" />
-                              <TableColumn fx:id="fromColumn" prefWidth="261.0" text="od kiedy" />
-                              <TableColumn fx:id="untilColumn" prefWidth="219.0" text="do kiedy" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
+            <Tab text="Dostepne książki">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TextField fx:id="searchInput" layoutX="348.0" layoutY="18.0" onAction="#onEnter" prefWidth="500.0" />
+                            <Button fx:id="searchButton" layoutX="858.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#search" text="Szukaj" />
+                            <TableView fx:id="booksListTab" layoutY="56.0" prefHeight="690.0" prefWidth="1200.0">
+                                <columns>
+                                    <TableColumn fx:id="booksListTab_titleColumn" editable="false" prefWidth="297.0" sortable="false" text="Tytuł" />
+                                    <TableColumn fx:id="booksListTab_authorColumn" minWidth="0.0" prefWidth="174.66665649414062" text="Autor" />
+                                    <TableColumn fx:id="booksListTab_genreColumn" prefWidth="254.33331298828125" text="Gatunek" />
+                                    <TableColumn fx:id="booksListTab_availableColumn" prefWidth="267.0" text="Dostępna ilość egzemplarzy" />
+                                </columns>
+                            </TableView>
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+
+            <Tab text="Wypożyczone książki">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="1200.0">
+                        <children>
+                            <TableView fx:id="rentsTab" prefHeight="769.0" prefWidth="1200.0">
+                                <columns>
+                                    <TableColumn fx:id="rentsTab_copyIdColumn" prefWidth="177.99996948242188" text="nr egzemplarza" />
+                                    <TableColumn fx:id="rentsTab_titleColumn" minWidth="0.0" prefWidth="287.0" text="Tytuł" />
+                                    <TableColumn fx:id="rentsTab_authorColumn" prefWidth="254.0" text="Autor" />
+                                    <TableColumn fx:id="rentsTab_fromColumn" prefWidth="261.0" text="od kiedy" />
+                                    <TableColumn fx:id="rentsTab_untilColumn" prefWidth="219.0" text="do kiedy" />
+                                </columns>
+                            </TableView>
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
         </tabs>
       </TabPane>
 
