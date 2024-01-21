@@ -1,6 +1,7 @@
 package org.biblioteka.model;
 
 import org.biblioteka.shared.model.Role;
+import org.biblioteka.shared.model.UserDTO;
 
 public class User {
     private Integer id;
@@ -65,6 +66,17 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public UserDTO toDto() {
+        UserDTO dto = new UserDTO();
+        dto.setId(id);
+        dto.setName(name);
+        dto.setSurname(surname);
+        dto.setAddress(address);
+        dto.setEmail(email);
+        dto.setRole(role.toString());
+        return dto;
     }
 
     @Override
