@@ -10,7 +10,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.control.Button?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.392" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.biblioteka.client.controller.LibrarianViewController">
    <children>
@@ -65,9 +64,10 @@
                   </AnchorPane>
               </content>
             </Tab>
+            <Tab fx:id="usersTab" text="Użytkownicy" />
         </tabs>
       </TabPane>
 
-       <Button layoutX="1100.0" layoutY="4" mnemonicParsing="false" text="Wyloguj się" onMouseClicked="#logOut"/>
+       <Button layoutX="1100.0" layoutY="4" mnemonicParsing="false" onMouseClicked="#logOut" text="Wyloguj się" />
    </children>
 </AnchorPane>

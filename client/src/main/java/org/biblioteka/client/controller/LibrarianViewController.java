@@ -4,11 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.converter.IntegerStringConverter;
+import org.biblioteka.client.HelloApplication;
 import org.biblioteka.client.config.CurrentUserContext;
 import org.biblioteka.client.config.RegisteredView;
 import org.biblioteka.client.service.HttpService;
@@ -77,7 +81,15 @@ public class LibrarianViewController {
     private Text returnCopySuccessText;
 
     @FXML
+    private Tab usersTab;
+
+    @FXML
     private void initialize() {
+        try {
+
+            Pane p = new FXMLLoader(HelloApplication.class.getResource(RegisteredView.LIBRARIAN_VIEW_USERS_TABLE.getFxmlFile())).load();
+            usersTab.setContent(p);
+        } catch (Exception e) {}
         tableView.setItems(booksList);
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         titleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
