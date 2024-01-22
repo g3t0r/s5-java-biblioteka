@@ -15,6 +15,9 @@ public class BookCopyRepository {
 
     private final static String UPDATE_COPY_AVAILABILITY =
             "update egzemplarz e set e.czy_dostepna = ? where e.ID_egzemplarzu = ?";
+
+    private final static String DOES_COPY_ID_EXIST =
+            "select * from egzemplarz e where e.ID_egzemplarzu = ?";
     private static BookCopyRepository instance;
 
     public BookCopyRepository(Connection conn) {
@@ -55,6 +58,19 @@ public class BookCopyRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    public boolean doesCopyIdExists(Integer copyId) {
+        try (PreparedStatement st = conn.prepareStatement(DOES_COPY_ID_EXIST)) {
+            st.setInt(1, copyId);
+
+            ResultSet r = st.executeQuery();
+            if (r.next()) {
+                return r.getBoolean(1);
+            }
+            return false;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

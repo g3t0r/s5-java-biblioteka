@@ -28,11 +28,15 @@ public class BorrowBookUseCase implements UseCase<JsonRequest<RentalRequestDTO>,
         User user = UserRepository.getInstance().findByEmail(form.getUserEmail());
 
         if (user == null) {
-            throw ValidationException.badRequest("No user account found for given email");
+            throw ValidationException.badRequest("Brak użytkownika o podanym emailu");
+        }
+
+        if (!copyRepository.doesCopyIdExists(form.getCopyId())) {
+            throw ValidationException.badRequest("Brak egzemlarza o podanym id");
         }
 
         if (!copyRepository.isAvailable(form.getCopyId())) {
-            throw ValidationException.badRequest("Copy not available");
+            throw ValidationException.badRequest("Egzemplarz o podanym id jest niedostępny");
         }
 
         rent.setToday(LocalDate.now());
