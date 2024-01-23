@@ -111,6 +111,21 @@ public class SignUpController {
             return false;
         }
 
+        if(streetWithNumber.getText().isBlank()) {
+            errorLabel.setText("Ulica i numer domu/mieszkania nie może być pusty");
+            return false;
+        }
+
+        if(city.getText().isBlank()) {
+            errorLabel.setText("Miasto nie może być puste");
+            return false;
+        }
+
+        if(zipCode.getText().isBlank()) {
+            errorLabel.setText("Kod pocztowy nie może być pusty");
+            return false;
+        }
+
         if(password.getText().isBlank()) {
             errorLabel.setText("Hasło nie może być puste");
             return false;
@@ -131,10 +146,20 @@ public class SignUpController {
             return false;
         }
 
-//        if(!address.getText().matches("^[a-zA-Z0-9 .-]+$")) {
-//            errorLabel.setText("Niepoprawny adres");
-//            return false;
-//        }
+        if(!streetWithNumber.getText().matches("^[a-zA-Z0-9 ]+$")) {
+            errorLabel.setText("Ulica i numer domu/mieszkania może zawierać tylko litery i cyfry");
+            return false;
+        }
+
+        if(!city.getText().matches("^[a-zA-Z ]+$")) {
+            errorLabel.setText("Miasto może zawierać tylko litery");
+            return false;
+        }
+
+        if(!zipCode.getText().matches("^[0-9]{2}-[0-9]{3}$")) {
+            errorLabel.setText("Kod pocztowy musi być w formacie XX-XXX");
+            return false;
+        }
 
         if(!pesel.getText().matches("^[0-9]+$")) {
             errorLabel.setText("Pesel może zawierać tylko cyfry");
