@@ -12,4 +12,6 @@ module org.biblioteka.client {
 
     opens org.biblioteka.client.controller to javafx.fxml;
     exports org.biblioteka.client.controller;
+    exports org.biblioteka.client.service;
+    opens org.biblioteka.client.service to javafx.fxml;
 }

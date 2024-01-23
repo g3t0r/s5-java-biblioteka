@@ -12,9 +12,8 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.util.converter.IntegerStringConverter;
 import org.biblioteka.client.config.CurrentUserContext;
-import org.biblioteka.client.config.RegisteredView;
 import org.biblioteka.client.service.HttpService;
-import org.biblioteka.client.service.SceneService;
+import org.biblioteka.client.service.LibrarianViewUsersTabManager;
 import org.biblioteka.shared.model.Role;
 import org.biblioteka.shared.model.UserDTO;
 
@@ -44,10 +43,13 @@ public class LibrarianViewUsersTableController {
 
     @FXML
     private void onClick(MouseEvent event) {
-        if(event.getClickCount() != 2) {
+        if (event.getClickCount() != 2) {
             return;
         }
-        System.out.println(table.getSelectionModel().getSelectedItem());
+        CurrentUserContext.variables.put("selectedUser",
+                table.getSelectionModel().getSelectedItem());
+
+        LibrarianViewUsersTabManager.getInstance().userCopies();
     }
 
     private ObservableList<UserDTO> userList = FXCollections.observableArrayList();
@@ -55,12 +57,6 @@ public class LibrarianViewUsersTableController {
     @FXML
     private void onEnter(ActionEvent event) {
         fetchUsers();
-    }
-
-    @FXML
-    private void logOut() {
-        CurrentUserContext.setCurrentUser(null);
-        SceneService.getInstance().activate(RegisteredView.SIGN_IN);
     }
 
     @FXML
