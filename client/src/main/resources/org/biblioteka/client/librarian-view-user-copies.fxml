@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.392" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.biblioteka.client.controller.LibrarianViewUserCopiesController">
+    <children>
+        <TableView fx:id="rentsTab" layoutY="64.0" prefHeight="705.0" prefWidth="1200.0">
+            <columns>
+                <TableColumn fx:id="rentsTab_copyIdColumn" prefWidth="177.99996948242188" text="nr egzemplarza" />
+                <TableColumn fx:id="rentsTab_titleColumn" minWidth="0.0" prefWidth="287.0" text="Tytuł" />
+                <TableColumn fx:id="rentsTab_authorColumn" prefWidth="254.0" text="Autor" />
+                <TableColumn fx:id="rentsTab_fromColumn" prefWidth="261.0" text="od kiedy" />
+                <TableColumn fx:id="rentsTab_untilColumn" prefWidth="219.0" text="do kiedy" />
+            </columns>
+        </TableView>
+      <Button layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onAction="#goBack" text="Powrót" />
+      <Button layoutX="1036.0" layoutY="19.0" mnemonicParsing="false" text="Wypożycz książkę" />
+    </children>
+</AnchorPane>
