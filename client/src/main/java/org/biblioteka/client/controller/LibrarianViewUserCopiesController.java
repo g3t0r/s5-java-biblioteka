@@ -70,6 +70,11 @@ public class LibrarianViewUserCopiesController {
     }
 
     @FXML
+    private void rent() {
+        LibrarianViewUsersTabManager.getInstance().rentCopy();
+    }
+
+    @FXML
     private void goBack() {
         LibrarianViewUsersTabManager.getInstance().users();
     }

@@ -17,6 +17,6 @@
             </columns>
         </TableView>
       <Button layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onAction="#goBack" text="Powrót" />
-      <Button layoutX="1036.0" layoutY="19.0" mnemonicParsing="false" text="Wypożycz książkę" />
+      <Button layoutX="1036.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#rent" text="Wypożycz książkę" />
     </children>
 </AnchorPane>
