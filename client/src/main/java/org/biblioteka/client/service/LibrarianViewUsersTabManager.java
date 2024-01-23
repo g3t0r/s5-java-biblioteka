@@ -36,6 +36,10 @@ public class LibrarianViewUsersTabManager {
         }
     }
 
+    public void rentCopy() {
+        loadView(RegisteredView.RENT_COPY_VIEW);
+    }
+
     public void users() {
         loadView(RegisteredView.LIBRARIAN_VIEW_USERS_TABLE);
     }

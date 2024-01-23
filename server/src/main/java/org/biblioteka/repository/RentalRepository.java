@@ -13,7 +13,7 @@ public class RentalRepository {
     private final static String UPDATE_RETURN_DATE_QUERY =
             "update wypozyczenie set kiedy_zwrocono = NOW() where nr_wypozyczenia = ( " +
                     "select tmp.nr_wypozyczenia from ( select w2.nr_wypozyczenia from wypozyczenie w2 " +
-                    "where w2.ID_egzemplarzu = ? order by w2.od_kiedy desc limit 1" +
+                    "where w2.ID_egzemplarzu = ? order by w2.nr_wypozyczenia desc limit 1" +
                     " ) as tmp)";
 
     private final static String GET_RENTED_COPIES_FOR_USER =
