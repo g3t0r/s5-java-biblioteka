@@ -154,7 +154,15 @@ public class LibrarianViewController {
         rentalErrorText.setText("");
         rentalSuccessText.setText("");
         RentalRequestDTO rental = new RentalRequestDTO();
-        rental.setCopyId(Integer.parseInt(copyId.getText()));
+        int intCopyId;
+        try {
+            intCopyId = Integer.parseInt(copyId.getText());
+        } catch (NumberFormatException nfe) {
+            rentalErrorText.setText("Id egzemplarza musi być liczbą");
+            return;
+        }
+
+        rental.setCopyId(intCopyId);
         rental.setUserEmail(userEmail.getText());
         rental.setUntil(untilDatePicker.getValue().toString());
 
@@ -167,7 +175,6 @@ public class LibrarianViewController {
                 (nothing) -> rentalSuccessText.setText("OK"),
                 errorDto -> rentalErrorText.setText(errorDto.message)
         );
-
     }
 
     @FXML
