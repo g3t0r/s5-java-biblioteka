@@ -11,7 +11,7 @@ public class UserDTO {
     private String phone;
     private String email;
     private String password;
-    private String role;
+    private Role role;
 
     public Integer getId() {
         return id;
@@ -77,11 +77,11 @@ public class UserDTO {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

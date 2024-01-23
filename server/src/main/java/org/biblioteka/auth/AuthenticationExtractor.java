@@ -45,6 +45,6 @@ public class AuthenticationExtractor {
             throw ValidationException.badRequest("Invalid email or password");
         }
 
-        return new UserAuthInfo(-1, Role.fromString(user.getRole()));
+        return new UserAuthInfo(-1, user.getRole());
     }
 }

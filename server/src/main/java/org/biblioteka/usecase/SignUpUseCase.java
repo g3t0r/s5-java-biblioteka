@@ -40,7 +40,7 @@ public class SignUpUseCase implements UseCase<JsonRequest<SignUpDto>, Response<V
         }
 
         try {
-            user.setRole(form.getRole());
+            user.setRole(Role.fromString(form.getRole()));
         } catch(IllegalArgumentException e) {
             throw new ValidationException("Incorrect role: " + form.getRole());
         }

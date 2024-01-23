@@ -58,7 +58,7 @@ public class UserRepository {
                 user.setPesel(rs.getString("pesel"));
                 user.setPhone(rs.getString("nr_tel"));
                 user.setEmail(rs.getString("email"));
-                user.setRole(rs.getString("rola"));
+                user.setRole(Role.fromString(rs.getString("rola")));
                 users.add(user);
             }
             return users;
@@ -85,7 +85,7 @@ public class UserRepository {
                 user.setPesel(rs.getString("pesel"));
                 user.setPhone(rs.getString("nr_tel"));
                 user.setEmail(rs.getString("email"));
-                user.setRole(rs.getString("rola"));
+                user.setRole(Role.fromString(rs.getString("rola")));
                 users.add(user);
             }
             return users;
@@ -108,7 +108,7 @@ public class UserRepository {
                 user.setPesel(rs.getString("pesel"));
                 user.setPhone(rs.getString("nr_tel"));
                 user.setEmail(rs.getString("email"));
-                user.setRole(rs.getString("rola"));
+                user.setRole(Role.fromString(rs.getString("rola")));
                 users.add(user);
             }
             return users;
@@ -131,7 +131,7 @@ public class UserRepository {
                 user.setPesel(rs.getString("pesel"));
                 user.setPhone(rs.getString("nr_tel"));
                 user.setEmail(rs.getString("email"));
-                user.setRole(rs.getString("rola"));
+                user.setRole(Role.fromString(rs.getString("rola")));
                 users.add(user);
             }
             return users;
@@ -154,7 +154,7 @@ public class UserRepository {
                 user.setPesel(rs.getString("pesel"));
                 user.setPhone(rs.getString("nr_tel"));
                 user.setEmail(rs.getString("email"));
-                user.setRole(rs.getString("rola"));
+                user.setRole(Role.fromString(rs.getString("rola")));
                 users.add(user);
             }
             return users;
@@ -182,7 +182,7 @@ public class UserRepository {
                 user.setPesel(rs.getString("pesel"));
                 user.setPhone(rs.getString("nr_tel"));
                 user.setEmail(rs.getString("email"));
-                user.setRole(rs.getString("rola"));
+                user.setRole(Role.fromString(rs.getString("rola")));
                 users.add(user);
             }
             return users;
@@ -207,7 +207,7 @@ public class UserRepository {
                 user.setPhone(rs.getString("nr_tel"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("haslo"));
-                user.setRole(rs.getString("rola"));
+                user.setRole(Role.fromString(rs.getString("rola")));
             }
             return user;
         } catch (SQLException e) {
