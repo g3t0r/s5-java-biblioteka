@@ -55,23 +55,6 @@ public class LibrarianViewController {
     @FXML
     private TableColumn totalColumn;
 
-    // rental
-
-    @FXML
-    private TextField userEmail;
-
-    @FXML
-    private TextField copyId;
-
-    @FXML
-    private DatePicker untilDatePicker;
-
-    @FXML
-    private Text rentalErrorText;
-
-    @FXML
-    private Text rentalSuccessText;
-
     // return copy
 
     @FXML
@@ -117,9 +100,6 @@ public class LibrarianViewController {
         });
 
         getAllBooks();
-
-        LocalDate oneMonthLater = LocalDate.now().plusMonths(1);
-        untilDatePicker.setValue(oneMonthLater);
     }
 
     @FXML
@@ -163,34 +143,6 @@ public class LibrarianViewController {
         booksList.clear();
         booksList.addAll(books);
         System.out.println(booksList);
-    }
-
-    @FXML
-    private void rentBook() {
-        rentalErrorText.setText("");
-        rentalSuccessText.setText("");
-        RentalRequestDTO rental = new RentalRequestDTO();
-        int intCopyId;
-        try {
-            intCopyId = Integer.parseInt(copyId.getText());
-        } catch (NumberFormatException nfe) {
-            rentalErrorText.setText("Id egzemplarza musi być liczbą");
-            return;
-        }
-
-        rental.setCopyId(intCopyId);
-        rental.setUserEmail(userEmail.getText());
-        rental.setUntil(untilDatePicker.getValue().toString());
-
-        if (!RentalRequestDTO.isValidDate(untilDatePicker.getValue())) {
-            rentalErrorText.setText("Okres wypożyczenia błedny");
-            return;
-        }
-
-        httpService.post("http://localhost:2020/rental", rental, Void.class,
-                (nothing) -> rentalSuccessText.setText("OK"),
-                errorDto -> rentalErrorText.setText(errorDto.message)
-        );
     }
 
     @FXML
