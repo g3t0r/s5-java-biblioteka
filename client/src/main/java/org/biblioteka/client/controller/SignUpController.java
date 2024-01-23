@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import org.biblioteka.client.config.CurrentUserContext;
 import org.biblioteka.client.config.RegisteredView;
 import org.biblioteka.client.service.HttpService;
@@ -25,7 +26,7 @@ public class SignUpController {
     }
 
     @FXML
-    private Label errorLabel;
+    private Text errorLabel;
 
     @FXML
     private RadioButton clientRadioButton;
@@ -44,6 +45,21 @@ public class SignUpController {
     private TextField email;
 
     @FXML
+    private TextField streetWithNumber;
+
+    @FXML
+    private TextField city;
+
+    @FXML
+    private TextField zipCode;
+
+    @FXML
+    private TextField pesel;
+
+    @FXML
+    private TextField phone;
+
+    @FXML
     private PasswordField password;
 
     @FXML
@@ -58,6 +74,10 @@ public class SignUpController {
             return Role.ADMIN.toString();
         }
         return null;
+    }
+
+    public String combineAddress() {
+        return streetWithNumber.getText() + ", " + city.getText() + ", " + zipCode.getText();
     }
 
     @FXML
@@ -81,6 +101,16 @@ public class SignUpController {
             return false;
         }
 
+        if(pesel.getText().isBlank()) {
+            errorLabel.setText("Pesel nie może być pusty");
+            return false;
+        }
+
+        if(phone.getText().isBlank()) {
+            errorLabel.setText("Numer telefonu nie może być pusty");
+            return false;
+        }
+
         if(password.getText().isBlank()) {
             errorLabel.setText("Hasło nie może być puste");
             return false;
@@ -90,6 +120,7 @@ public class SignUpController {
             errorLabel.setText("Imię może zawierać tylko litery");
             return false;
         }
+
         if(!surname.getText().matches("^[a-zA-Z]+$")) {
             errorLabel.setText("Nazwisko może zawierać tylko litery");
             return false;
@@ -97,6 +128,31 @@ public class SignUpController {
 
         if(!email.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             errorLabel.setText("Niepoprawny adres email");
+            return false;
+        }
+
+//        if(!address.getText().matches("^[a-zA-Z0-9 .-]+$")) {
+//            errorLabel.setText("Niepoprawny adres");
+//            return false;
+//        }
+
+        if(!pesel.getText().matches("^[0-9]+$")) {
+            errorLabel.setText("Pesel może zawierać tylko cyfry");
+            return false;
+        }
+
+        if(pesel.getText().length() != 11) {
+            errorLabel.setText("Pesel musi mieć 11 cyfr");
+            return false;
+        }
+
+        if(!phone.getText().matches("^[0-9]+$")) {
+            errorLabel.setText("Numer telefonu może zawierać tylko cyfry");
+            return false;
+        }
+
+        if(phone.getText().length() != 9) {
+            errorLabel.setText("Numer telefonu musi mieć 9 cyfr");
             return false;
         }
 
@@ -123,6 +179,9 @@ public class SignUpController {
         dto.setName(name.getText());
         dto.setSurname(surname.getText());
         dto.setEmail(email.getText());
+        dto.setAddress(combineAddress());
+        dto.setPesel(pesel.getText());
+        dto.setPhone(phone.getText());
         dto.setPassword(password.getText());
         dto.setRole(getRole());
 

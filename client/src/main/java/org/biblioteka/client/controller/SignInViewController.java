@@ -48,6 +48,10 @@ public class SignInViewController {
                 (userDto) -> {
                     System.out.println(userDto);
                     CurrentUserContext.setCurrentUser(userDto);
+                    System.out.println(Role.CUSTOMER.name());
+                    System.out.println(Role.EMPLOYEE.name());
+                    System.out.println(Role.CUSTOMER.name());
+
                     if(userDto.getRole().equals(Role.CUSTOMER.name())) {
                         SceneService.getInstance().addPane(RegisteredView.CUSTOMER_VIEW);
                         SceneService.getInstance().activate(RegisteredView.CUSTOMER_VIEW);

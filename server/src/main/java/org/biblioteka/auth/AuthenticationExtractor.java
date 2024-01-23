@@ -6,6 +6,7 @@ import org.biblioteka.exceptions.ValidationException;
 import org.biblioteka.http.Request;
 import org.biblioteka.model.User;
 import org.biblioteka.repository.UserRepository;
+import org.biblioteka.shared.model.Role;
 
 import java.util.Base64;
 
@@ -44,6 +45,6 @@ public class AuthenticationExtractor {
             throw ValidationException.badRequest("Invalid email or password");
         }
 
-        return new UserAuthInfo(-1, user.getRole());
+        return new UserAuthInfo(-1, Role.fromString(user.getRole()));
     }
 }

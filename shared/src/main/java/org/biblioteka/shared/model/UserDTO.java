@@ -5,6 +5,10 @@ public class UserDTO {
     private String name;
     private String surname;
     private String address;
+
+    private String pesel;
+
+    private String phone;
     private String email;
     private String password;
     private String role;
@@ -39,6 +43,22 @@ public class UserDTO {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public String getEmail() {

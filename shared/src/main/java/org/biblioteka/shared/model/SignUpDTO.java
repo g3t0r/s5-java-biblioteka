@@ -7,7 +7,11 @@ public class SignUpDTO {
     private String email;
     private String password;
 
-    private String address = "Warszawska 1, 00-001 Warszawa";
+    private String address;
+
+    private String pesel;
+
+    private String phone;
 
     public String getRole() {
         return role;
@@ -35,6 +39,26 @@ public class SignUpDTO {
 
     public String getAddress() {
         return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public String getEmail() {

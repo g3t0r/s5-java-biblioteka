@@ -202,6 +202,8 @@ CREATE TABLE `uzytkownik` (
   `imie` varchar(20) NOT NULL,
   `nazwisko` varchar(20) NOT NULL,
   `adres` varchar(30) NOT NULL,
+  `pesel` varchar(11) NOT NULL,
+  `nr_tel` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
   `haslo` varchar(50) DEFAULT NULL,
   `rola` enum('pracownik','administrator','czytelnik') NOT NULL
@@ -211,18 +213,18 @@ CREATE TABLE `uzytkownik` (
 -- Zrzut danych tabeli `uzytkownik`
 --
 
-INSERT INTO `uzytkownik` (`ID_uzytkownika`, `imie`, `nazwisko`, `adres`, `email`, `haslo`, `rola`) VALUES
-(1, 'Dawid', 'Nowak', 'Złota 12, Bydgoszcz 45-534', 'dawid.nowak@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'administrator'),
-(2, 'Martyna', 'Bielak', 'Focha 54, Kraków 65-768', 'martyna.bielak@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'pracownik'),
-(3, 'Agnieszka', 'Kowalska', 'Zdobywców 88, Kraków 55-132', 'agnieszka.kowalska@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'pracownik'),
-(4, 'Stanisław', 'Kwiatkoski', 'Długa 34, Zakopane 85-613', 'stanislaw.kwiatkoski@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'pracownik'),
-(5, 'Miłosz', 'Ptak', 'Drzymały 15, Bochnia 23-702', 'milosz.ptak@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
-(6, 'Damian', 'Kozak', 'Hetmańska 3, Warszawa 19-180', 'damian.kozak@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
-(7, 'Radosław', 'Dudzic', 'Żegotka 41, Limanowa 11-292', 'radoslaw.dudzic@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
-(8, 'Dominik', 'Duda', 'Pszczelarska 6, Kraków 55-786', 'dominik.duda@gamil.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
-(9, 'Natalia', 'Ptaszek', 'Focha 66, Kraków 65-768', 'natalia.ptaszek@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
-(10, 'Angelika', 'Tomala', 'Wodna 16, Warszawa 39-715', 'angelika.tomala@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
-(11, 'Jan', 'Kowalski', 'Krakow', 'jkowalski1@mail.com', 'B9xByilF90f4C3TOyKgLfgxBlYc54h8bd0aktRk2FOA=', 'czytelnik');
+INSERT INTO `uzytkownik` (`ID_uzytkownika`, `imie`, `nazwisko`, `adres`, `pesel`, `nr_tel`, `email`, `haslo`, `rola`) VALUES
+(1, 'Dawid', 'Nowak', 'Złota 12, Bydgoszcz 45-534', '89050523134', '101550144', 'dawid.nowak@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'administrator'),
+(2, 'Martyna', 'Bielak', 'Focha 54, Kraków 65-768', '77021387229', '959997101', 'martyna.bielak@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'pracownik'),
+(3, 'Agnieszka', 'Kowalska', 'Zdobywców 88, Kraków 55-132', '57061248472', '746623964', 'agnieszka.kowalska@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'pracownik'),
+(4, 'Stanisław', 'Kwiatkoski', 'Długa 34, Zakopane 85-613', '82082505236', '842610764', 'stanislaw.kwiatkoski@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'pracownik'),
+(5, 'Miłosz', 'Ptak', 'Drzymały 15, Bochnia 23-702', '25011900773', '746623964', 'milosz.ptak@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
+(6, 'Damian', 'Kozak', 'Hetmańska 3, Warszawa 19-180', '82082505236', '521426432', 'damian.kozak@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
+(7, 'Radosław', 'Dudzic', 'Żegotka 41, Limanowa 11-292', '77021387229', '761393616', 'radoslaw.dudzic@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
+(8, 'Dominik', 'Duda', 'Pszczelarska 6, Kraków 55-786', '95022194246', '681763543', 'dominik.duda@gamil.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
+(9, 'Natalia', 'Ptaszek', 'Focha 66, Kraków 65-768', '25011900773', '842610764', 'natalia.ptaszek@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
+(10, 'Angelika', 'Tomala', 'Wodna 16, Warszawa 39-715', '57061248472', '689512811', 'angelika.tomala@gmail.com', 'M/9X01Ygm8so2qJnPTWjytqcDjRBAVXbfBcyQbvpD14=', 'czytelnik'),
+(11, 'Jan', 'Kowalski', 'Krakow', 'jkowalski1@mail.com', '25011900773', '842610764', 'B9xByilF90f4C3TOyKgLfgxBlYc54h8bd0aktRk2FOA=', 'czytelnik');
 
 -- --------------------------------------------------------
 
