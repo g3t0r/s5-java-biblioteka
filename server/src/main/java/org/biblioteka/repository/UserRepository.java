@@ -10,27 +10,37 @@ import java.util.List;
 
 public class UserRepository {
 
-    private static final String GET_ALL_USERS = "select ID_uzytkownika, imie, nazwisko, adres, email, rola from uzytkownik";
+    private static final String GET_ALL_USERS = "select ID_uzytkownika, imie, nazwisko, adres, pesel, nr_tel, email, rola from uzytkownik";
 
     private static final String FIND_USER_BY_ROLE =
-            "select ID_uzytkownika, imie, nazwisko, adres, email, rola from uzytkownik where rola=?";
+            "select ID_uzytkownika, imie, nazwisko, adres, pesel, nr_tel, email, rola from uzytkownik where rola=?";
+
+    private static final String FIND_USER_BY_PESEL =
+            "select ID_uzytkownika, imie, nazwisko, adres, pesel, nr_tel, email, rola from uzytkownik where pesel=?";
+
+    private static final String FIND_USER_BY_PHONE =
+            "select ID_uzytkownika, imie, nazwisko, adres, pesel, nr_tel, email, rola from uzytkownik where nr_tel=?";
 
     private static final String SEARCH_USER_BY_ROLE_AND_TEXT = """
-            select ID_uzytkownika, imie, nazwisko, adres, email, rola from uzytkownik
+            select ID_uzytkownika, imie, nazwisko, adres, pesel, nr_tel, email, rola from uzytkownik
             where rola=? and (
                 imie like ? or
                 nazwisko like ? or
                 adres like ? or
-                email like ?
+                email like ? or
+                pesel like ? or
+                nr_tel like ?
             );
             """;
 
     private static final String SEARCH_USER = """
-            select ID_uzytkownika, imie, nazwisko, adres, email, rola from uzytkownik
+            select ID_uzytkownika, imie, nazwisko, adres, pesel, nr_tel, email, rola from uzytkownik
             where imie like ? or
                 nazwisko like ? or
                 adres like ? or
                 email like ?
+                pesel like ? or
+                nr_tel like ?
             """;
 
     private final Connection conn = DatabaseConfig.getConnection();
@@ -45,6 +55,8 @@ public class UserRepository {
                 user.setName(rs.getString("imie"));
                 user.setSurname(rs.getString("nazwisko"));
                 user.setAddress(rs.getString("adres"));
+                user.setPesel(rs.getString("pesel"));
+                user.setPhone(rs.getString("nr_tel"));
                 user.setEmail(rs.getString("email"));
                 user.setRole(Role.fromString(rs.getString("rola")));
                 users.add(user);
@@ -70,6 +82,8 @@ public class UserRepository {
                 user.setName(rs.getString("imie"));
                 user.setSurname(rs.getString("nazwisko"));
                 user.setAddress(rs.getString("adres"));
+                user.setPesel(rs.getString("pesel"));
+                user.setPhone(rs.getString("nr_tel"));
                 user.setEmail(rs.getString("email"));
                 user.setRole(Role.fromString(rs.getString("rola")));
                 users.add(user);
@@ -91,6 +105,54 @@ public class UserRepository {
                 user.setName(rs.getString("imie"));
                 user.setSurname(rs.getString("nazwisko"));
                 user.setAddress(rs.getString("adres"));
+                user.setPesel(rs.getString("pesel"));
+                user.setPhone(rs.getString("nr_tel"));
+                user.setEmail(rs.getString("email"));
+                user.setRole(Role.fromString(rs.getString("rola")));
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<User> findUserByPhone(String phone) {
+        try (PreparedStatement st = conn.prepareStatement(FIND_USER_BY_PHONE)) {
+            st.setString(1, phone);
+            ResultSet rs = st.executeQuery();
+            List<User> users = new ArrayList<>();
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("ID_uzytkownika"));
+                user.setName(rs.getString("imie"));
+                user.setSurname(rs.getString("nazwisko"));
+                user.setAddress(rs.getString("adres"));
+                user.setPesel(rs.getString("pesel"));
+                user.setPhone(rs.getString("nr_tel"));
+                user.setEmail(rs.getString("email"));
+                user.setRole(Role.fromString(rs.getString("rola")));
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<User> findUserByPesel(String pesel) {
+        try (PreparedStatement st = conn.prepareStatement(FIND_USER_BY_PESEL)) {
+            st.setString(1, pesel);
+            ResultSet rs = st.executeQuery();
+            List<User> users = new ArrayList<>();
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("ID_uzytkownika"));
+                user.setName(rs.getString("imie"));
+                user.setSurname(rs.getString("nazwisko"));
+                user.setAddress(rs.getString("adres"));
+                user.setPesel(rs.getString("pesel"));
+                user.setPhone(rs.getString("nr_tel"));
                 user.setEmail(rs.getString("email"));
                 user.setRole(Role.fromString(rs.getString("rola")));
                 users.add(user);
@@ -117,6 +179,8 @@ public class UserRepository {
                 user.setName(rs.getString("imie"));
                 user.setSurname(rs.getString("nazwisko"));
                 user.setAddress(rs.getString("adres"));
+                user.setPesel(rs.getString("pesel"));
+                user.setPhone(rs.getString("nr_tel"));
                 user.setEmail(rs.getString("email"));
                 user.setRole(Role.fromString(rs.getString("rola")));
                 users.add(user);
@@ -128,7 +192,7 @@ public class UserRepository {
     }
 
     public User findByEmail(String email) {
-        String query = "select ID_uzytkownika, imie, nazwisko, adres, email, haslo, rola from uzytkownik where email = ?";
+        String query = "select ID_uzytkownika, imie, nazwisko, adres, pesel, nr_tel, email, haslo, rola from uzytkownik where email = ?";
         try (PreparedStatement st = conn.prepareStatement(query)) {
             st.setString(1, email);
             ResultSet rs = st.executeQuery();
@@ -139,6 +203,8 @@ public class UserRepository {
                 user.setName(rs.getString("imie"));
                 user.setSurname(rs.getString("nazwisko"));
                 user.setAddress(rs.getString("adres"));
+                user.setPesel(rs.getString("pesel"));
+                user.setPhone(rs.getString("nr_tel"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("haslo"));
                 user.setRole(Role.fromString(rs.getString("rola")));
@@ -151,8 +217,8 @@ public class UserRepository {
 
     public User add(User user) {
 
-        String query = "insert into uzytkownik (imie, nazwisko, adres, email, haslo, rola)" +
-                " values (?, ?, ?, ?, ?, ?)";
+        String query = "insert into uzytkownik (imie, nazwisko, adres, pesel, nr_tel, email, haslo, rola)" +
+                " values (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)
         ) {
@@ -160,9 +226,11 @@ public class UserRepository {
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
             statement.setString(3, user.getAddress());
-            statement.setString(4, user.getEmail());
-            statement.setString(5, user.getPassword());
-            statement.setString(6, user.getRole().toString());
+            statement.setString(4, user.getPesel());
+            statement.setString(5, user.getPhone());
+            statement.setString(6, user.getEmail());
+            statement.setString(7, user.getPassword());
+            statement.setString(8, user.getRole().toString());
 
             statement.executeUpdate();
 

@@ -6,6 +6,7 @@ import org.biblioteka.exceptions.ValidationException;
 import org.biblioteka.http.Request;
 import org.biblioteka.model.User;
 import org.biblioteka.repository.UserRepository;
+import org.biblioteka.shared.model.Role;
 
 import java.util.Base64;
 

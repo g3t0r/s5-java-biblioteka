@@ -31,6 +31,8 @@ public class SignUpUseCase implements UseCase<JsonRequest<SignUpDto>, Response<V
         user.setSurname(form.getSurname());
         user.setEmail(form.getEmail());
         user.setAddress(form.getAddress());
+        user.setPesel(form.getPesel());
+        user.setPhone(form.getPhone());
 
         String rawPassword = form.getPassword();
         if(rawPassword == null || rawPassword.isBlank() || rawPassword.isEmpty()) {
@@ -41,6 +43,22 @@ public class SignUpUseCase implements UseCase<JsonRequest<SignUpDto>, Response<V
             user.setRole(Role.fromString(form.getRole()));
         } catch(IllegalArgumentException e) {
             throw new ValidationException("Incorrect role: " + form.getRole());
+        }
+
+        if(user.getPesel().length() != 11 || !user.getPesel().matches("[0-9]+")) {
+            throw new ValidationException("Błędny format peselu");
+        }
+
+        if(userRepository.findUserByPesel(form.getPesel()).size() > 0) {
+            throw new ValidationException("Pesel już zajęty");
+        }
+
+        if(user.getPhone().length() != 9 || !user.getPhone().matches("[0-9]+")) {
+            throw new ValidationException("Błędny format numeru telefonu");
+        }
+
+        if(userRepository.findUserByPhone(form.getPhone()).size() > 0) {
+            throw new ValidationException("Numer telefonu już zajęty");
         }
 
         user.setPassword(encoder.encode(rawPassword));

@@ -46,12 +46,12 @@ public class SignInViewController {
 
         httpService.post("http://localhost:2020/login", dto, UserDTO.class,
                 (userDto) -> {
-                    System.out.println(userDto);
                     CurrentUserContext.setCurrentUser(userDto);
-                    if(userDto.getRole().equals(Role.CUSTOMER.name())) {
+
+                    if(userDto.getRole().toString().equals(Role.CUSTOMER.toString())) {
                         SceneService.getInstance().addPane(RegisteredView.CUSTOMER_VIEW);
                         SceneService.getInstance().activate(RegisteredView.CUSTOMER_VIEW);
-                    } else if(userDto.getRole().equals(Role.EMPLOYEE.name())) {
+                    } else if(userDto.getRole().toString().equals(Role.EMPLOYEE.toString())) {
                         SceneService.getInstance().addPane(RegisteredView.LIBRARIAN_VIEW);
                         SceneService.getInstance().activate(RegisteredView.LIBRARIAN_VIEW);
                     } else {

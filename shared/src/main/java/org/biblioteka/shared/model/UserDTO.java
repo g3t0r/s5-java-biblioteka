@@ -5,9 +5,13 @@ public class UserDTO {
     private String name;
     private String surname;
     private String address;
+
+    private String pesel;
+
+    private String phone;
     private String email;
     private String password;
-    private String role;
+    private Role role;
 
     public Integer getId() {
         return id;
@@ -41,6 +45,22 @@ public class UserDTO {
         this.address = address;
     }
 
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -57,11 +77,11 @@ public class UserDTO {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

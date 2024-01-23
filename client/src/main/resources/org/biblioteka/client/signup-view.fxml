@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.text.Text?>
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.392" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.biblioteka.client.controller.SignUpController">
 
     <RadioButton fx:id="clientRadioButton" layoutX="481.0" layoutY="210.0" mnemonicParsing="false" selected="true" text="Klient" toggleGroup="$group">
@@ -27,14 +28,29 @@
     <Label layoutX="480.0" layoutY="350.0" text="Email" />
     <TextField fx:id="email" layoutX="479.0" layoutY="370.0" prefHeight="24.0" prefWidth="247.0" />
 
-    <Label layoutX="480.0" layoutY="400.0" text="Hasło" />
-    <PasswordField fx:id="password" layoutX="479.0" layoutY="420.0" prefHeight="24.0" prefWidth="247.0" />
+    <Label layoutX="360.0" layoutY="400.0" text="Ulica i numer" />
+    <TextField fx:id="streetWithNumber" layoutX="360.0" layoutY="420.0" prefHeight="24.0" prefWidth="180.0" />
 
-    <Label layoutX="479.0" layoutY="450.0" text="Powtórz hasło" />
-    <PasswordField fx:id="repeatPassword" layoutX="479.0" layoutY="470.0" prefHeight="24.0" prefWidth="247.0" />
+    <Label layoutX="550.0" layoutY="400.0" text="Miasto" />
+    <TextField fx:id="city" layoutX="550.0" layoutY="420.0" prefHeight="24.0" prefWidth="120.0" />
 
-    <Button fx:id="submitButton" layoutX="546.0" layoutY="510.0" mnemonicParsing="false" onMouseClicked="#submitForm" text="Utwórz konto" />
-    <Label layoutX="551.0" layoutY="550.0" onMouseClicked="#navigateToSignIn" text="Mam już konto" />
-    <Label fx:id="errorLabel" layoutX="481.0" layoutY="570.0" />
+    <Label layoutX="680.0" layoutY="400.0" text="Kod pocztowy" />
+    <TextField fx:id="zipCode" layoutX="680.0" layoutY="420.0" prefHeight="24.0" prefWidth="120.0" />
+
+    <Label layoutX="480.0" layoutY="450.0" text="Pesel" />
+    <TextField fx:id="pesel" layoutX="479.0" layoutY="470.0" prefHeight="24.0" prefWidth="247.0" />
+
+    <Label layoutX="480.0" layoutY="500.0" text="Numer telefonu" />
+    <TextField fx:id="phone" layoutX="479.0" layoutY="520.0" prefHeight="24.0" prefWidth="247.0" />
+
+    <Label layoutX="480.0" layoutY="550.0" text="Hasło" />
+    <PasswordField fx:id="password" layoutX="479.0" layoutY="570.0" prefHeight="24.0" prefWidth="247.0" />
+
+    <Label layoutX="479.0" layoutY="600.0" text="Powtórz hasło" />
+    <PasswordField fx:id="repeatPassword" layoutX="479.0" layoutY="620.0" prefHeight="24.0" prefWidth="247.0" />
+
+    <Button fx:id="submitButton" layoutX="546.0" layoutY="660.0" mnemonicParsing="false" onMouseClicked="#submitForm" text="Utwórz konto" />
+    <Label layoutX="551.0" layoutY="700.0" onMouseClicked="#navigateToSignIn" text="Mam już konto" />
+    <Text fx:id="errorLabel" fill="red" layoutX="481.0" layoutY="730.0" />
 
 </AnchorPane>
