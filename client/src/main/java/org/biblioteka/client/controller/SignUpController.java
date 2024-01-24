@@ -194,6 +194,20 @@ public class SignUpController {
         return true;
     }
 
+    private void clearForm() {
+        name.setText("");
+        surname.setText("");
+        email.setText("");
+        streetWithNumber.setText("");
+        city.setText("");
+        zipCode.setText("");
+        pesel.setText("");
+        phone.setText("");
+        password.setText("");
+        repeatPassword.setText("");
+        errorLabel.setText("");
+    }
+
     @FXML
     private void submitForm() {
         if(!validateForm()) {
@@ -214,6 +228,8 @@ public class SignUpController {
                 (userDto) -> {
                     SceneService.getInstance().addPane(RegisteredView.SIGN_IN);
                     SceneService.getInstance().activate(RegisteredView.SIGN_IN);
+
+                    clearForm();
                 },
                 (errorDto) -> Platform.runLater(() -> errorLabel.setText(errorDto.message)));
     }
