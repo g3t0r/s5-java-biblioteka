@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import org.biblioteka.client.config.CurrentUserContext;
 import org.biblioteka.client.config.RegisteredView;
@@ -38,7 +39,7 @@ public class AdminViewController {
     @FXML
     private TableColumn<UserDTO, String> colEmail;
     @FXML
-    private TableColumn<UserDTO, String> colRole;
+    private TableColumn<UserDTO, Role> colRole;
     @FXML
     private TextField searchField;
 
@@ -54,6 +55,19 @@ public class AdminViewController {
         CurrentUserContext.setCurrentUser(null);
         SceneService.getInstance().activate(RegisteredView.SIGN_IN);
     }
+
+    StringConverter<Role> roleStringConverter = new StringConverter<Role>() {
+        @Override
+        public String toString(Role role) {
+            // Convert Role to String (modify this according to your Role class)
+            return role != null ? role.toString() : "";
+        }
+
+        @Override
+        public Role fromString(String string) {
+            return Role.fromString(string);
+        }
+    };
 
     @FXML
     private void initialize() {
@@ -76,7 +90,7 @@ public class AdminViewController {
         colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
 
         colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
-        colRole.setCellFactory(TextFieldTableCell.forTableColumn());
+        colRole.setCellFactory(TextFieldTableCell.forTableColumn(roleStringConverter));
 
         fetchUsers();
     }
