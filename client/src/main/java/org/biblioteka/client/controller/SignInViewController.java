@@ -38,6 +38,12 @@ public class SignInViewController {
         SceneService.getInstance().activate(RegisteredView.SIGN_UP);
     }
 
+    private void clearForm() {
+        email.setText("");
+        password.setText("");
+        errorLabel.setText("");
+    }
+
     @FXML
     private void submitForm() {
         LogInDto dto = new LogInDto();
@@ -58,6 +64,8 @@ public class SignInViewController {
                         SceneService.getInstance().addPane(RegisteredView.ADMIN_VIEW);
                         SceneService.getInstance().activate(RegisteredView.ADMIN_VIEW);
                     }
+
+                    clearForm();
                 },
                 (errorDto) -> Platform.runLater(() -> errorLabel.setText(errorDto.message)));
     }
