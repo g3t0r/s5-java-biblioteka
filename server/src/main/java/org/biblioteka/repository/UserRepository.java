@@ -28,8 +28,8 @@ public class UserRepository {
                 nazwisko like ? or
                 adres like ? or
                 email like ? or
-                pesel like ? or
-                nr_tel like ?
+                cast(pesel as char) like ? or
+                cast(nr_tel as char) like ?
             );
             """;
 
@@ -38,9 +38,9 @@ public class UserRepository {
             where imie like ? or
                 nazwisko like ? or
                 adres like ? or
-                email like ?
-                pesel like ? or
-                nr_tel like ?
+                email like ? or
+                cast(pesel as char) like ? or
+                cast(nr_tel as char) like ?
             """;
 
     private final Connection conn = DatabaseConfig.getConnection();
@@ -74,6 +74,8 @@ public class UserRepository {
             st.setString(2, preparedSearch);
             st.setString(3, preparedSearch);
             st.setString(4, preparedSearch);
+            st.setString(5, preparedSearch);
+            st.setString(6, preparedSearch);
             ResultSet rs = st.executeQuery();
             List<User> users = new ArrayList<>();
             while (rs.next()) {
@@ -171,6 +173,8 @@ public class UserRepository {
             st.setString(3, preparedSearch);
             st.setString(4, preparedSearch);
             st.setString(5, preparedSearch);
+            st.setString(6, preparedSearch);
+            st.setString(7, preparedSearch);
             ResultSet rs = st.executeQuery();
             List<User> users = new ArrayList<>();
             while (rs.next()) {
