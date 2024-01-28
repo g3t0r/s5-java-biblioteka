@@ -92,7 +92,7 @@ public class LibrarianViewUsersTableController {
     }
 
     private void searchUsers(String query) {
-        String url = String.format("http://localhost:2020/users?role=%squery=%s",
+        String url = String.format("http://localhost:2020/users?role=%s&query=%s",
                 Role.CUSTOMER, query);
 
         httpService.get(url, UserDTO[].class, this::updateTable,
